@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Eternal Bloom Diamond Solitaire — 360° Viewer · Trilok</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #73402a;
+  --brown-light: #9a5a3c;
+  --brown-dark: #4e2b1a;
+  --brown-muted: #b5815f;
+  --cream: #fdf8f4;
+  --cream-dark: #f5ede3;
+  --white: #ffffff;
+  --gold: #c9a96e;
+  --text-dark: #1a1008;
+  --text-mid: #5c3d27;
+  --border: rgba(115,64,42,0.11);
+  --bg: #f8f5f0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text-dark);overflow-x:hidden;}
+
+/* ── ANNOUNCE ── */
+.announce-bar{background:#1a1008;color:var(--white);text-align:center;padding:10px 20px;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300;}
+
+/* ── NAV ── */
+nav{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:0 52px;display:flex;align-items:center;justify-content:space-between;
+  height:68px;position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 20px rgba(0,0,0,0.04);
+}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text-dark);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;font-weight:400;transition:color 0.2s;display:flex;align-items:center;gap:3px;}
+.nav-links a:hover{color:var(--brown);}
+.nav-chevron{font-size:7px;opacity:0.4;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--brown);letter-spacing:4px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap;}
+.nav-logo-diamond{color:var(--gold);font-size:12px;}
+.nav-actions{display:flex;align-items:center;gap:16px;}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--text-dark);stroke-width:1.5;transition:color 0.2s;}
+.nav-icon:hover{color:var(--brown);}
+.cart-wrap{position:relative;}
+.cart-count{position:absolute;top:-6px;right:-7px;width:16px;height:16px;background:var(--brown);color:var(--white);font-size:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.nav-search-bar{display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:7px 14px;font-family:'Jost',sans-serif;font-size:11px;color:#aaa;cursor:pointer;width:145px;}
+
+/* ── PAGE GRID ── */
+.page-wrap{
+  display:grid;grid-template-columns:1fr 420px;
+  min-height:calc(100vh - 68px - 36px);
+  max-width:1400px;margin:0 auto;
+}
+
+/* ── LEFT: VIEWER SIDE ── */
+.viewer-side{
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--border);
+  background:var(--white);
+}
+
+/* Breadcrumb */
+.breadcrumb-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;border-bottom:1px solid var(--border);
+}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);}
+.breadcrumb a{color:var(--brown-muted);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--brown);}
+.breadcrumb-sep{font-size:9px;opacity:0.5;}
+.breadcrumb .current{color:var(--text-dark);font-weight:500;}
+.uhd-btn{
+  display:flex;align-items:center;gap:7px;
+  border:1px solid var(--border);padding:8px 16px;
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-dark);cursor:pointer;background:transparent;
+  font-family:'Jost',sans-serif;transition:all 0.2s;
+}
+.uhd-btn:hover{border-color:var(--brown);color:var(--brown);}
+.uhd-btn svg{width:13px;height:13px;color:var(--gold);}
+
+/* 360 Stage */
+.viewer-stage{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:40px;position:relative;
+  background:radial-gradient(ellipse at 50% 40%,#f0ece6 0%,#e8e2da 100%);
+  cursor:grab;user-select:none;min-height:480px;
+}
+.viewer-stage:active{cursor:grabbing;}
+
+/* Ring display */
+.ring-display{
+  position:relative;
+  width:360px;height:360px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.05s linear;
+}
+
+/* Shadow under ring */
+.ring-shadow{
+  position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  width:200px;height:30px;
+  background:radial-gradient(ellipse,rgba(0,0,0,0.18) 0%,transparent 70%);
+  border-radius:50%;
+}
+
+/* Drag hint dot */
+.drag-dot{
+  position:absolute;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--brown);opacity:0.7;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+  animation:dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse{0%,100%{opacity:0.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.3;transform:translate(-50%,-50%) scale(1.5)}}
+
+/* Rotation hint dot on ring */
+.hint-dot{
+  position:absolute;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--brown);
+  border:2px solid white;
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);
+  top:46%;left:38%;
+  pointer-events:none;
+}
+
+/* View controls bar */
+.view-controls{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;border-top:1px solid var(--border);
+  background:var(--white);
+}
+.view-left{display:flex;align-items:center;gap:20px;}
+.view-ctrl-btn{
+  width:36px;height:36px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dark);transition:all 0.2s;border-radius:50%;
+}
+.view-ctrl-btn:hover{border-color:var(--brown);color:var(--brown);background:var(--cream);}
+.view-ctrl-btn svg{width:15px;height:15px;}
+.drag-hint{
+  display:flex;align-items:center;gap:8px;
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);
+}
+.drag-hint svg{width:14px;height:14px;color:var(--brown-muted);}
+.view-right{display:flex;align-items:center;gap:10px;}
+.fullscreen-btn{
+  width:36px;height:36px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dark);transition:all 0.2s;
+}
+.fullscreen-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.fullscreen-btn svg{width:15px;height:15px;}
+
+/* TRY ON AR button (floating circle) */
+.try-ar-fab{
+  position:absolute;bottom:80px;right:30px;
+  width:80px;height:80px;border-radius:50%;
+  background:var(--white);border:2px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,0.12);
+  transition:all 0.25s;
+  color:var(--text-dark);
+  font-family:'Jost',sans-serif;
+}
+.try-ar-fab:hover{background:var(--brown);color:var(--white);border-color:var(--brown);transform:scale(1.06);}
+.try-ar-fab svg{width:20px;height:20px;}
+.try-ar-fab span{font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;}
+
+/* Bottom trust strip */
+.trust-strip{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;border-top:1px solid var(--border);
+  background:var(--white);
+}
+.trust-bottom-item{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-muted);
+  display:flex;align-items:center;gap:6px;
+}
+.trust-bottom-item svg{width:12px;height:12px;color:var(--gold);}
+.trust-links{display:flex;gap:28px;}
+.trust-link{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);cursor:pointer;text-decoration:underline;transition:color 0.2s;}
+.trust-link:hover{color:var(--brown);}
+
+/* ── RIGHT PANEL ── */
+.product-panel{
+  background:var(--white);
+  padding:32px 36px;
+  overflow-y:auto;
+  position:sticky;top:68px;height:calc(100vh - 68px);
+}
+.product-panel::-webkit-scrollbar{width:4px;}
+.product-panel::-webkit-scrollbar-thumb{background:var(--border);}
+
+/* Top decoration line */
+.panel-deco{
+  display:flex;align-items:center;gap:6px;margin-bottom:18px;
+}
+.deco-line{height:2px;width:32px;background:var(--brown);}
+.deco-dot{width:6px;height:6px;border-radius:50%;background:var(--brown);}
+
+.product-sku{font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:10px;}
+.product-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;line-height:1.1;color:var(--text-dark);margin-bottom:4px;}
+.product-subtitle{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--brown);margin-bottom:24px;}
+
+/* Price */
+.price-row{
+  display:flex;align-items:baseline;gap:14px;
+  padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  margin-bottom:28px;
+}
+.price-main{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:var(--text-dark);}
+.price-old{font-size:16px;color:#b0a090;text-decoration:line-through;font-family:'Jost',sans-serif;font-weight:300;}
+.price-badge{
+  background:var(--brown);color:var(--white);
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;
+}
+
+/* Metal select */
+.selector-section{margin-bottom:24px;}
+.selector-label{font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dark);margin-bottom:14px;font-weight:500;}
+.metal-options{display:flex;gap:10px;}
+.metal-opt{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:12px 14px;border:1.5px solid var(--border);
+  cursor:pointer;transition:all 0.2s;min-width:82px;
+}
+.metal-opt:hover{border-color:var(--brown-muted);}
+.metal-opt.active{border-color:var(--brown);background:var(--cream);}
+.metal-dot-wrap{position:relative;width:28px;height:28px;}
+.metal-dot{
+  width:28px;height:28px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.3);
+}
+.metal-active-dot{
+  position:absolute;top:-2px;right:-2px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--brown);border:2px solid white;
+  opacity:0;transition:opacity 0.2s;
+}
+.metal-opt.active .metal-active-dot{opacity:1;}
+.metal-name{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);text-align:center;line-height:1.3;}
+.swatch-yellow{background:radial-gradient(circle at 35% 35%,#ffe5a0,#c9a96e,#8b6914);}
+.swatch-rose{background:radial-gradient(circle at 35% 35%,#ffcfbc,#e8956d,#b56240);}
+.swatch-white{background:radial-gradient(circle at 35% 35%,#f8f8f8,#d4d4d4,#999);}
+
+/* Size select */
+.size-options{display:flex;gap:8px;}
+.size-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.size-guide-link{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown);cursor:pointer;text-decoration:underline;}
+.size-chip{
+  width:48px;height:48px;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;transition:all 0.2s;color:var(--text-mid);
+}
+.size-chip:hover{border-color:var(--brown);color:var(--brown);}
+.size-chip.active{background:var(--brown);color:var(--white);border-color:var(--brown);}
+
+/* Specs grid */
+.specs-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  border:1px solid var(--border);margin-bottom:24px;
+  background:var(--border);
+}
+.spec-cell{
+  background:var(--white);padding:16px 16px 14px;
+}
+.spec-cell-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:6px;}
+.spec-cell-val{font-size:15px;color:var(--text-dark);font-weight:400;font-family:'Cormorant Garamond',serif;}
+
+/* Features */
+.feature-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.feature-row:first-child{border-top:1px solid var(--border);}
+.feature-icon{width:18px;height:18px;color:var(--brown);flex-shrink:0;margin-top:1px;}
+.feature-text{}
+.feature-title{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;color:var(--text-dark);margin-bottom:4px;}
+.feature-desc{font-size:11.5px;color:var(--text-mid);font-weight:300;line-height:1.65;}
+
+/* CTAs */
+.cta-stack{margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+.btn-acquire{
+  width:100%;padding:17px;
+  background:var(--brown);color:var(--white);border:none;
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;font-style:italic;
+  letter-spacing:1px;cursor:pointer;transition:all 0.3s;
+}
+.btn-acquire:hover{background:var(--brown-dark);transform:translateY(-1px);box-shadow:0 6px 24px rgba(115,64,42,0.25);}
+.btn-consult{
+  width:100%;padding:14px;
+  background:transparent;color:var(--text-dark);border:1.5px solid var(--border);
+  font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-consult:hover{border-color:var(--brown);color:var(--brown);}
+
+.shipping-note{
+  display:flex;align-items:center;gap:7px;
+  margin-top:14px;font-size:11px;color:var(--brown-muted);font-weight:300;
+}
+.shipping-note svg{width:13px;height:13px;flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{background:var(--cream-dark);border-top:1px solid var(--border);padding:52px 80px 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:56px;margin-bottom:44px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--brown);letter-spacing:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.footer-tagline{font-size:12px;color:var(--text-mid);font-weight:300;line-height:1.8;max-width:240px;margin-bottom:22px;}
+.footer-social{display:flex;gap:12px;}
+.social-btn{width:32px;height:32px;border:1px solid rgba(115,64,42,0.25);display:flex;align-items:center;justify-content:center;color:var(--brown);cursor:pointer;transition:all 0.25s;text-decoration:none;}
+.social-btn:hover{background:var(--brown);color:var(--white);}
+.social-btn svg{width:14px;height:14px;}
+.footer-col-title{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dark);margin-bottom:18px;font-weight:500;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{text-decoration:none;font-size:12px;color:var(--text-mid);font-weight:300;transition:color 0.2s;}
+.footer-links a:hover{color:var(--brown);}
+.footer-newsletter-text{font-size:12px;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:16px;}
+.newsletter-form{display:flex;}
+.newsletter-input{flex:1;padding:10px 12px;border:1px solid rgba(115,64,42,0.2);border-right:none;font-family:'Jost',sans-serif;font-size:11px;background:var(--white);outline:none;}
+.newsletter-input::placeholder{color:#c4a48a;}
+.newsletter-btn{background:var(--brown);color:var(--white);border:none;padding:0 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.newsletter-btn:hover{background:var(--brown-dark);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);}
+.footer-trust-row{display:flex;align-items:center;gap:24px;}
+.f-trust{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);}
+.f-trust svg{width:12px;height:12px;color:var(--gold);}
+.footer-copy{font-size:10px;color:var(--brown-muted);font-weight:300;}
+
+/* ── FULLSCREEN OVERLAY ── */
+.fs-overlay{
+  position:fixed;inset:0;background:#0e0a07;z-index:1000;
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:24px;
+}
+.fs-overlay.active{display:flex;}
+.fs-close{
+  position:absolute;top:24px;right:24px;
+  width:44px;height:44px;border:1px solid rgba(255,255,255,0.2);
+  background:transparent;color:white;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+}
+.fs-close:hover{background:var(--brown);border-color:var(--brown);}
+.fs-close svg{width:18px;height:18px;}
+.fs-ring{width:480px;height:480px;display:flex;align-items:center;justify-content:center;cursor:grab;}
+.fs-ring:active{cursor:grabbing;}
+.fs-hint{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.fs-degree{font-family:'Cormorant Garamond',serif;font-size:48px;color:rgba(255,255,255,0.15);position:absolute;bottom:48px;left:50%;transform:translateX(-50%);}
+
+/* ── ANIMATIONS ── */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.floating{animation:float 5s ease-in-out infinite;}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">Free Shipping on All Orders &nbsp;·&nbsp; BIS Hallmarked Certified Gold</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="trilok-product-listing.html">Rings <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Earrings <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Necklaces <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Bangles <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Bridal <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+  </ul>
+  <a class="nav-logo" href="trilok-jewellery (2).html">
+    <span class="nav-logo-diamond">◆</span>Trilok &mdash; Om Sri Jewel
+  </a>
+  <div class="nav-actions">
+    <div class="nav-search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:#aaa"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search...
+    </div>
+    <a href="trilok-cart.html" class="nav-icon">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <a href="login-signup.html">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- PAGE GRID -->
+<div class="page-wrap">
+
+  <!-- LEFT: VIEWER -->
+  <div class="viewer-side">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+      <div class="breadcrumb">
+        <a href="#">Collections</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#">Bridal Heritage</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="current">The Eternal Bloom Ring</span>
+      </div>
+      <button class="uhd-btn" onclick="toggleUHD(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Ultra-HD Detail
+      </button>
+    </div>
+
+    <!-- 360 Stage -->
+    <div class="viewer-stage" id="viewer-stage">
+      <div class="ring-display floating" id="ring-display">
+        <!-- Platinum solitaire ring SVG -->
+        <svg width="360" height="360" viewBox="0 0 360 360" fill="none" id="ring-svg">
+          <defs>
+            <!-- Platinum/white gold gradient -->
+            <linearGradient id="platBand" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f8f8f8"/>
+              <stop offset="30%" stop-color="#e0e0e0"/>
+              <stop offset="60%" stop-color="#c8c8c8"/>
+              <stop offset="100%" stop-color="#a8a8a8"/>
+            </linearGradient>
+            <radialGradient id="platBandR" cx="35%" cy="30%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="40%" stop-color="#e8e8e8"/>
+              <stop offset="80%" stop-color="#c0c0c0"/>
+              <stop offset="100%" stop-color="#909090"/>
+            </radialGradient>
+            <!-- Six-prong setting -->
+            <radialGradient id="settingGrad" cx="40%" cy="35%">
+              <stop offset="0%" stop-color="#f0f0f0"/>
+              <stop offset="50%" stop-color="#d0d0d0"/>
+              <stop offset="100%" stop-color="#909090"/>
+            </radialGradient>
+            <!-- Diamond facets -->
+            <radialGradient id="diamondCore" cx="35%" cy="25%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="15%" stop-color="#f8faff"/>
+              <stop offset="40%" stop-color="#ddeeff"/>
+              <stop offset="70%" stop-color="#aaccee"/>
+              <stop offset="100%" stop-color="#6699cc"/>
+            </radialGradient>
+            <radialGradient id="diamondFire" cx="65%" cy="70%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.9)"/>
+              <stop offset="50%" stop-color="rgba(200,220,255,0.5)"/>
+              <stop offset="100%" stop-color="rgba(100,150,200,0.1)"/>
+            </radialGradient>
+            <!-- Drop shadow filter -->
+            <filter id="ringShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="rgba(0,0,0,0.22)"/>
+            </filter>
+            <filter id="diamGlow" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="sheen">
+              <feGaussianBlur stdDeviation="2" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- ── RING BAND ── -->
+          <!-- Bottom ellipse of band (band bottom face) -->
+          <ellipse cx="180" cy="282" rx="82" ry="22" fill="#b0b0b0" opacity="0.6"/>
+          <!-- Band body left side -->
+          <path d="M98 180 L98 282 Q98 304 180 304 Q262 304 262 282 L262 180" fill="url(#platBand)" filter="url(#ringShadow)"/>
+          <!-- Band top rim -->
+          <ellipse cx="180" cy="180" rx="82" ry="22" fill="url(#platBandR)"/>
+          <!-- Inner band opening (dark hole) -->
+          <ellipse cx="180" cy="180" rx="52" ry="14" fill="#3a3a3a"/>
+          <ellipse cx="180" cy="282" rx="52" ry="14" fill="#2a2a2a"/>
+          <!-- Band left highlight shine -->
+          <path d="M98 180 Q96 230 98 282" stroke="rgba(255,255,255,0.55)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M104 178 Q102 230 104 280" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Band right edge -->
+          <path d="M262 180 Q264 230 262 282" stroke="rgba(180,180,180,0.4)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- ── PRONG SETTING BASE ── -->
+          <!-- Setting collar -->
+          <ellipse cx="180" cy="148" rx="78" ry="20" fill="#cccccc" opacity="0.5"/>
+          <ellipse cx="180" cy="148" rx="72" ry="18" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="1"/>
+          <!-- Inner setting -->
+          <ellipse cx="180" cy="145" rx="58" ry="16" fill="#b8b8b8"/>
+
+          <!-- ── SIX PRONGS ── -->
+          <!-- Top prong -->
+          <rect x="177" y="60" width="6" height="30" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5"/>
+          <!-- Bottom prong -->
+          <rect x="177" y="150" width="6" height="26" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5"/>
+          <!-- Top-left prong -->
+          <rect x="120" y="82" width="6" height="26" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5" transform="rotate(-58 123 95)"/>
+          <!-- Top-right prong -->
+          <rect x="228" y="82" width="6" height="26" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5" transform="rotate(58 231 95)"/>
+          <!-- Bottom-left prong -->
+          <rect x="120" y="120" width="6" height="26" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5" transform="rotate(58 123 133)"/>
+          <!-- Bottom-right prong -->
+          <rect x="228" y="120" width="6" height="26" rx="3" fill="url(#settingGrad)" stroke="#d0d0d0" stroke-width="0.5" transform="rotate(-58 231 133)"/>
+          <!-- Prong tips (spheres) -->
+          <circle cx="180" cy="64" r="6" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <circle cx="180" cy="174" r="5.5" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <circle cx="118" cy="96" r="5.5" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <circle cx="242" cy="96" r="5.5" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <circle cx="118" cy="148" r="5.5" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <circle cx="242" cy="148" r="5.5" fill="url(#settingGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+
+          <!-- ── ROUND BRILLIANT DIAMOND ── -->
+          <!-- Diamond main body -->
+          <circle cx="180" cy="112" r="74" fill="url(#diamondCore)" filter="url(#diamGlow)"/>
+
+          <!-- Table facet (octagon) -->
+          <polygon points="180,50 220,62 238,100 226,140 180,152 134,140 122,100 140,62"
+            fill="rgba(220,235,255,0.6)" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+
+          <!-- Star facets -->
+          <polygon points="180,50 196,80 180,90 164,80"
+            fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+          <polygon points="238,100 208,108 204,92 220,62"
+            fill="rgba(200,220,255,0.3)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+          <polygon points="226,140 200,128 210,112 238,100"
+            fill="rgba(180,210,255,0.25)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+          <polygon points="180,152 176,128 192,120 226,140"
+            fill="rgba(160,200,240,0.3)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+          <polygon points="180,152 184,128 168,120 134,140"
+            fill="rgba(200,220,255,0.2)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+          <polygon points="134,140 160,128 150,112 122,100"
+            fill="rgba(210,225,255,0.3)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+          <polygon points="122,100 152,108 156,92 140,62"
+            fill="rgba(230,240,255,0.35)" stroke="rgba(255,255,255,0.35)" stroke-width="0.5"/>
+          <polygon points="140,62 164,80 164,96 152,108 122,100"
+            fill="rgba(240,248,255,0.25)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+
+          <!-- Kite facets -->
+          <polygon points="180,90 196,80 208,108 180,108"
+            fill="rgba(210,230,255,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+          <polygon points="180,90 164,80 152,108 180,108"
+            fill="rgba(230,242,255,0.35)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+          <polygon points="180,108 208,108 204,128 180,128"
+            fill="rgba(190,215,255,0.3)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+          <polygon points="180,108 152,108 156,128 180,128"
+            fill="rgba(215,232,255,0.35)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+
+          <!-- Culet (center) -->
+          <circle cx="180" cy="112" r="8" fill="rgba(100,150,200,0.5)"/>
+          <circle cx="180" cy="112" r="4" fill="rgba(150,190,230,0.6)"/>
+
+          <!-- Main highlight flash -->
+          <ellipse cx="154" cy="82" rx="22" ry="16" fill="rgba(255,255,255,0.62)" transform="rotate(-25 154 82)" filter="url(#sheen)"/>
+          <ellipse cx="148" cy="76" rx="10" ry="7" fill="rgba(255,255,255,0.85)" transform="rotate(-25 148 76)"/>
+
+          <!-- Secondary sparkle -->
+          <ellipse cx="212" cy="136" rx="10" ry="7" fill="rgba(255,255,255,0.3)" transform="rotate(15 212 136)"/>
+
+          <!-- Color dispersion flares -->
+          <circle cx="220" cy="88" r="5" fill="rgba(255,200,180,0.45)"/>
+          <circle cx="144" cy="142" r="4" fill="rgba(180,210,255,0.5)"/>
+          <circle cx="218" cy="144" r="3.5" fill="rgba(180,255,200,0.45)"/>
+          <circle cx="148" cy="84" r="3" fill="rgba(255,230,160,0.5)"/>
+
+          <!-- Outer diamond ring (girdle) -->
+          <circle cx="180" cy="112" r="74" fill="none" stroke="rgba(200,220,240,0.3)" stroke-width="1"/>
+        </svg>
+
+        <div class="ring-shadow"></div>
+        <div class="hint-dot" id="hint-dot"></div>
+      </div>
+
+      <!-- Try AR fab -->
+      <div class="try-ar-fab" onclick="window.location.href='#'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        <span>Try On AR</span>
+      </div>
+    </div>
+
+    <!-- View Controls -->
+    <div class="view-controls">
+      <div class="view-left">
+        <button class="view-ctrl-btn" onclick="zoom(-1)" title="Zoom Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </button>
+        <div class="drag-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3"/></svg>
+          Drag to Rotate
+        </div>
+        <button class="view-ctrl-btn" onclick="zoom(1)" title="Zoom In">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </button>
+      </div>
+      <div class="view-right">
+        <button class="fullscreen-btn" onclick="openFullscreen()" title="Fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <div style="display:flex;gap:32px;">
+        <div class="trust-bottom-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          BIS Hallmark Certified
+        </div>
+        <div class="trust-bottom-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          IGI Certified Diamonds
+        </div>
+        <div class="trust-bottom-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Ethically Sourced
+        </div>
+      </div>
+      <div class="trust-links">
+        <span class="trust-link" onclick="scrollToSpecs()">Specifications</span>
+        <span class="trust-link">Return Policy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="product-panel" id="product-panel">
+    <div class="panel-deco">
+      <div class="deco-line"></div>
+      <div class="deco-dot"></div>
+      <div class="deco-line"></div>
+      <div class="deco-dot"></div>
+    </div>
+
+    <div class="product-sku">SKU: TR-EB-1024</div>
+    <div class="product-title">The Eternal Bloom</div>
+    <div class="product-subtitle">Diamond Solitaire</div>
+
+    <!-- Price -->
+    <div class="price-row">
+      <div class="price-main" id="price-main">₹1,45,000</div>
+      <div class="price-old" id="price-old">₹1,72,000</div>
+      <div class="price-badge">15% Off</div>
+    </div>
+
+    <!-- Metal -->
+    <div class="selector-section">
+      <div class="selector-label">Select Metal</div>
+      <div class="metal-options">
+        <div class="metal-opt active" onclick="selectMetal(this,'yellow','₹1,45,000','₹1,72,000','url(#platBand)','url(#platBandR)','url(#settingGrad)')">
+          <div class="metal-dot-wrap">
+            <div class="metal-dot swatch-yellow"></div>
+            <div class="metal-active-dot"></div>
+          </div>
+          <div class="metal-name">18K Yellow Gold</div>
+        </div>
+        <div class="metal-opt" onclick="selectMetal(this,'rose','₹1,38,000','₹1,62,000')">
+          <div class="metal-dot-wrap">
+            <div class="metal-dot swatch-rose"></div>
+            <div class="metal-active-dot"></div>
+          </div>
+          <div class="metal-name">18K Rose Gold</div>
+        </div>
+        <div class="metal-opt" onclick="selectMetal(this,'white','₹1,52,000','₹1,78,000')">
+          <div class="metal-dot-wrap">
+            <div class="metal-dot swatch-white"></div>
+            <div class="metal-active-dot"></div>
+          </div>
+          <div class="metal-name">18K White Gold</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size -->
+    <div class="selector-section">
+      <div class="size-label-row">
+        <div class="selector-label" style="margin-bottom:0;">Select Size (IN)</div>
+        <span class="size-guide-link">Size Guide</span>
+      </div>
+      <div class="size-options" style="margin-top:14px;">
+        <div class="size-chip" onclick="selectSize(this)">10</div>
+        <div class="size-chip" onclick="selectSize(this)">12</div>
+        <div class="size-chip active" onclick="selectSize(this)">14</div>
+        <div class="size-chip" onclick="selectSize(this)">16</div>
+        <div class="size-chip" onclick="selectSize(this)">18</div>
+      </div>
+    </div>
+
+    <!-- Specs grid -->
+    <div class="specs-grid" id="specs-anchor">
+      <div class="spec-cell">
+        <div class="spec-cell-label">Weight</div>
+        <div class="spec-cell-val">4.52 Grams</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Purity</div>
+        <div class="spec-cell-val" id="spec-purity">18K (750)</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Diamond</div>
+        <div class="spec-cell-val">0.75 CT VVS-EF</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Delivery</div>
+        <div class="spec-cell-val">Within 5 Days</div>
+      </div>
+    </div>
+
+    <!-- Feature rows -->
+    <div class="feature-row">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      <div class="feature-text">
+        <div class="feature-title">Lifetime Exchange</div>
+        <div class="feature-desc">Secure your investment with our guaranteed lifetime buyback and exchange policy.</div>
+      </div>
+    </div>
+    <div class="feature-row">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <div class="feature-text">
+        <div class="feature-title">Instant EMI Available</div>
+        <div class="feature-desc">Flexible payment plans starting at ₹12,083/month with 0% interest for 6 months.</div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-stack">
+      <button class="btn-acquire" onclick="acquirePiece(this)">Acquire Masterpiece</button>
+      <button class="btn-consult">Consult a Specialist</button>
+    </div>
+
+    <div class="shipping-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Shipping includes complimentary luxury packaging &amp; insurance.
+    </div>
+  </div>
+</div>
+
+<!-- FULLSCREEN OVERLAY -->
+<div class="fs-overlay" id="fs-overlay">
+  <button class="fs-close" onclick="closeFullscreen()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="fs-ring" id="fs-ring">
+    <svg width="480" height="480" viewBox="0 0 360 360" fill="none" id="fs-ring-svg">
+      <!-- Same ring SVG copied into fullscreen -->
+      <defs>
+        <linearGradient id="fsBand" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8f8f8"/><stop offset="30%" stop-color="#e0e0e0"/><stop offset="60%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#a8a8a8"/></linearGradient>
+        <radialGradient id="fsBandR" cx="35%" cy="30%"><stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#e8e8e8"/><stop offset="80%" stop-color="#c0c0c0"/><stop offset="100%" stop-color="#909090"/></radialGradient>
+        <radialGradient id="fsSetting" cx="40%" cy="35%"><stop offset="0%" stop-color="#f0f0f0"/><stop offset="50%" stop-color="#d0d0d0"/><stop offset="100%" stop-color="#909090"/></radialGradient>
+        <radialGradient id="fsDiamond" cx="35%" cy="25%"><stop offset="0%" stop-color="#ffffff"/><stop offset="15%" stop-color="#f8faff"/><stop offset="40%" stop-color="#ddeeff"/><stop offset="70%" stop-color="#aaccee"/><stop offset="100%" stop-color="#6699cc"/></radialGradient>
+        <filter id="fsGlow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="fsShadow"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="rgba(0,0,0,0.4)"/></filter>
+      </defs>
+      <ellipse cx="180" cy="282" rx="82" ry="22" fill="#b0b0b0" opacity="0.4"/>
+      <path d="M98 180 L98 282 Q98 304 180 304 Q262 304 262 282 L262 180" fill="url(#fsBand)" filter="url(#fsShadow)"/>
+      <ellipse cx="180" cy="180" rx="82" ry="22" fill="url(#fsBandR)"/>
+      <ellipse cx="180" cy="180" rx="52" ry="14" fill="#2a2a2a"/>
+      <path d="M98 180 Q96 230 98 282" stroke="rgba(255,255,255,0.5)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="180" cy="148" rx="72" ry="18" fill="url(#fsSetting)" stroke="#d0d0d0" stroke-width="1"/>
+      <ellipse cx="180" cy="145" rx="58" ry="16" fill="#b8b8b8"/>
+      <rect x="177" y="60" width="6" height="30" rx="3" fill="url(#fsSetting)"/>
+      <rect x="177" y="150" width="6" height="26" rx="3" fill="url(#fsSetting)"/>
+      <rect x="120" y="82" width="6" height="26" rx="3" fill="url(#fsSetting)" transform="rotate(-58 123 95)"/>
+      <rect x="228" y="82" width="6" height="26" rx="3" fill="url(#fsSetting)" transform="rotate(58 231 95)"/>
+      <rect x="120" y="120" width="6" height="26" rx="3" fill="url(#fsSetting)" transform="rotate(58 123 133)"/>
+      <rect x="228" y="120" width="6" height="26" rx="3" fill="url(#fsSetting)" transform="rotate(-58 231 133)"/>
+      <circle cx="180" cy="64" r="6" fill="url(#fsSetting)"/>
+      <circle cx="180" cy="174" r="5.5" fill="url(#fsSetting)"/>
+      <circle cx="118" cy="96" r="5.5" fill="url(#fsSetting)"/>
+      <circle cx="242" cy="96" r="5.5" fill="url(#fsSetting)"/>
+      <circle cx="118" cy="148" r="5.5" fill="url(#fsSetting)"/>
+      <circle cx="242" cy="148" r="5.5" fill="url(#fsSetting)"/>
+      <circle cx="180" cy="112" r="74" fill="url(#fsDiamond)" filter="url(#fsGlow)"/>
+      <polygon points="180,50 220,62 238,100 226,140 180,152 134,140 122,100 140,62" fill="rgba(220,235,255,0.6)" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+      <polygon points="180,50 196,80 180,90 164,80" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+      <polygon points="238,100 208,108 204,92 220,62" fill="rgba(200,220,255,0.3)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+      <polygon points="180,90 196,80 208,108 180,108" fill="rgba(210,230,255,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+      <polygon points="180,90 164,80 152,108 180,108" fill="rgba(230,242,255,0.35)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+      <circle cx="180" cy="112" r="8" fill="rgba(100,150,200,0.5)"/>
+      <ellipse cx="154" cy="82" rx="22" ry="16" fill="rgba(255,255,255,0.65)" transform="rotate(-25 154 82)"/>
+      <ellipse cx="148" cy="76" rx="10" ry="7" fill="rgba(255,255,255,0.9)" transform="rotate(-25 148 76)"/>
+      <circle cx="220" cy="88" r="5" fill="rgba(255,200,180,0.5)"/>
+      <circle cx="144" cy="142" r="4" fill="rgba(180,210,255,0.55)"/>
+    </svg>
+  </div>
+  <div class="fs-hint">Drag to rotate · Scroll to zoom</div>
+  <div class="fs-degree" id="fs-degree">0°</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span style="color:var(--gold);font-size:14px;">◆</span>Trilok – Om Sri Jewel</div>
+      <p class="footer-tagline">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern virtual innovation.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links"><li><a href="#">Bridal Heritage</a></li><li><a href="#">Everyday Elegance</a></li><li><a href="#">Temple Jewellery</a></li><li><a href="#">Modern Minimalism</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Customer Care</div>
+      <ul class="footer-links"><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Store Locator</a></li><li><a href="#">Gold Rate Guide</a></li><li><a href="#">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Join The Inner Circle</div>
+      <p class="footer-newsletter-text">Receive updates on new collections and exclusive events.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Email Address">
+        <button class="newsletter-btn">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-trust-row">
+      <div class="f-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>BIS Hallmark</div>
+      <div class="f-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Lifetime Exchange</div>
+      <div class="f-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Payment</div>
+    </div>
+    <div class="footer-copy">© 2024 Trilok – Om Sri Jewel. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ── 360° DRAG ROTATION ──
+let isDragging = false, lastX = 0, angle = 0, currentScale = 1;
+const stage = document.getElementById('viewer-stage');
+const ring = document.getElementById('ring-display');
+const ringSvg = document.getElementById('ring-svg');
+const hintDot = document.getElementById('hint-dot');
+
+function applyRingTransform() {
+  const skewY = Math.sin(angle * Math.PI / 180) * 22;
+  const scaleX = Math.abs(Math.cos(angle * Math.PI / 180)) * 0.35 + 0.65;
+  ringSvg.style.transform = `skewY(${skewY}deg) scaleX(${scaleX}) scale(${currentScale})`;
+  ringSvg.style.transformOrigin = 'center';
+  // Move hint dot to simulate 3D tracking point
+  const dotLeft = 38 + Math.cos(angle * Math.PI / 180) * 10;
+  hintDot.style.left = dotLeft + '%';
+}
+
+stage.addEventListener('mousedown', e => {
+  isDragging = true; lastX = e.clientX;
+  ring.style.animation = 'none';
+  stage.style.cursor = 'grabbing';
+});
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  stage.style.cursor = 'grab';
+  ring.style.animation = 'float 5s ease-in-out infinite';
+});
+window.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const dx = e.clientX - lastX;
+  angle = (angle + dx * 0.7) % 360;
+  lastX = e.clientX;
+  applyRingTransform();
+  document.getElementById('fs-degree').textContent = Math.round(((angle % 360) + 360) % 360) + '°';
+});
+
+// Touch support
+stage.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; ring.style.animation = 'none'; });
+window.addEventListener('touchend', () => { isDragging = false; ring.style.animation = 'float 5s ease-in-out infinite'; });
+window.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const dx = e.touches[0].clientX - lastX;
+  angle = (angle + dx * 0.7) % 360;
+  lastX = e.touches[0].clientX;
+  applyRingTransform();
+});
+
+// ── ZOOM ──
+function zoom(dir) {
+  currentScale = Math.min(2.2, Math.max(0.5, currentScale + dir * 0.15));
+  applyRingTransform();
+}
+
+stage.addEventListener('wheel', e => {
+  e.preventDefault();
+  zoom(e.deltaY < 0 ? 0.08 : -0.08);
+}, { passive: false });
+
+// ── FULLSCREEN ──
+let fsDragging = false, fsLastX = 0, fsAngle = 0;
+const fsOverlay = document.getElementById('fs-overlay');
+const fsRing = document.getElementById('fs-ring');
+const fsRingSvg = document.getElementById('fs-ring-svg');
+
+function openFullscreen() {
+  fsOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeFullscreen() {
+  fsOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+fsRing.addEventListener('mousedown', e => { fsDragging = true; fsLastX = e.clientX; fsRing.style.cursor = 'grabbing'; });
+window.addEventListener('mouseup', () => { fsDragging = false; fsRing.style.cursor = 'grab'; });
+window.addEventListener('mousemove', e => {
+  if (!fsDragging) return;
+  const dx = e.clientX - fsLastX;
+  fsAngle = (fsAngle + dx * 0.6) % 360;
+  fsLastX = e.clientX;
+  const sk = Math.sin(fsAngle * Math.PI / 180) * 22;
+  const sc = Math.abs(Math.cos(fsAngle * Math.PI / 180)) * 0.35 + 0.65;
+  fsRingSvg.style.transform = `skewY(${sk}deg) scaleX(${sc})`;
+  document.getElementById('fs-degree').textContent = Math.round(((fsAngle % 360) + 360) % 360) + '°';
+});
+
+window.addEventListener('keydown', e => { if (e.key === 'Escape') closeFullscreen(); });
+
+// ── METAL SWITCHER ──
+const metalData = {
+  yellow: { purity: '18K (750)', bandFill: ['#fff8e0','#d4a04a','#8a5a18','#6a3a10'], stop0: '#fff8e0', stop1: '#d4a04a', stop2: '#8a5a18' },
+  rose:   { purity: '18K (750)', bandFill: ['#ffd4bc','#e8906c','#a04820','#7a3010'], stop0: '#ffd4bc', stop1: '#e8906c', stop2: '#a04820' },
+  white:  { purity: '950 PT', bandFill: ['#f8f8f8','#e0e0e0','#c0c0c0','#909090'], stop0: '#f8f8f8', stop1: '#e0e0e0', stop2: '#a0a0a0' }
+};
+
+function selectMetal(el, type, price, oldPrice) {
+  document.querySelectorAll('.metal-opt').forEach(m => m.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('price-main').textContent = price;
+  document.getElementById('price-old').textContent = oldPrice;
+  document.getElementById('spec-purity').textContent = metalData[type].purity;
+  // Update band gradient stops in the main SVG
+  const d = metalData[type];
+  const grad = document.getElementById('platBand');
+  if (grad) {
+    const stops = grad.querySelectorAll('stop');
+    stops[0] && stops[0].setAttribute('stop-color', d.stop0);
+    stops[1] && stops[1].setAttribute('stop-color', d.stop1);
+    stops[2] && stops[2].setAttribute('stop-color', d.stop2);
+    stops[3] && stops[3].setAttribute('stop-color', d.bandFill[3]);
+  }
+  const gradR = document.getElementById('platBandR');
+  if (gradR) {
+    const stopsR = gradR.querySelectorAll('stop');
+    stopsR[0] && stopsR[0].setAttribute('stop-color', d.stop0);
+    stopsR[1] && stopsR[1].setAttribute('stop-color', d.stop1);
+    stopsR[2] && stopsR[2].setAttribute('stop-color', d.stop2);
+  }
+}
+
+// ── SIZE SELECT ──
+function selectSize(chip) {
+  document.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+}
+
+// ── UHD TOGGLE ──
+function toggleUHD(btn) {
+  const active = btn.style.background === 'var(--brown)';
+  btn.style.background = active ? '' : 'var(--brown)';
+  btn.style.color = active ? '' : 'white';
+  btn.style.borderColor = active ? '' : 'var(--brown)';
+  // Simulate UHD by adding a subtle filter
+  ringSvg.style.filter = active ? '' : 'contrast(1.05) saturate(1.1)';
+}
+
+// ── ACQUIRE ──
+function acquirePiece(btn) {
+  const orig = btn.textContent;
+  btn.textContent = '✓ Added to Cart';
+  btn.style.fontStyle = 'normal';
+  btn.style.fontSize = '13px';
+  btn.style.letterSpacing = '2px';
+  const count = document.getElementById('cart-count');
+  count.textContent = parseInt(count.textContent) + 1;
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.style.fontStyle = '';
+    btn.style.fontSize = '';
+    btn.style.letterSpacing = '';
+  }, 2000);
+}
+
+// ── SCROLL TO SPECS ──
+function scrollToSpecs() {
+  document.getElementById('specs-anchor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>

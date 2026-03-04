@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmation — Trilok · Om Sri Jewel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #73402a;
+  --brown-light: #9a5a3c;
+  --brown-dark: #4e2b1a;
+  --brown-muted: #b5815f;
+  --cream: #fdf8f4;
+  --cream-dark: #f5ede3;
+  --white: #ffffff;
+  --gold: #c9a96e;
+  --gold-light: #f0d890;
+  --text-dark: #2a1a10;
+  --text-mid: #5c3d27;
+  --border: rgba(115,64,42,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;}
+
+.announce-bar{background:var(--brown);color:var(--white);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300;}
+nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 52px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text-dark);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;transition:color 0.2s;display:flex;align-items:center;gap:3px;}
+.nav-links a:hover{color:var(--brown);}
+.nav-chevron{font-size:7px;opacity:0.45;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--brown);letter-spacing:6px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-diamond{color:var(--gold);font-size:13px;}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--text-dark);stroke-width:1.5;transition:color 0.2s;}
+.nav-icon:hover{color:var(--brown);}
+.cart-wrap{position:relative;}
+.cart-count{position:absolute;top:-6px;right:-7px;width:16px;height:16px;background:var(--brown);color:var(--white);font-size:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.nav-search-bar{display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:7px 14px;font-family:'Jost',sans-serif;font-size:11px;color:#aaa;cursor:pointer;width:150px;}
+
+/* ── SUCCESS HERO ── */
+.confirm-hero{padding:60px 80px 48px;text-align:center;border-bottom:1px solid var(--border);}
+.success-circle{width:72px;height:72px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:scalePop 0.5s ease both;}
+.success-circle svg{width:32px;height:32px;color:var(--gold);}
+@keyframes scalePop{0%{transform:scale(0.6);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.confirm-label{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500;}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--text-dark);margin-bottom:12px;line-height:1.1;}
+.confirm-sub{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.8;max-width:500px;margin:0 auto 28px;}
+.order-ref-pill{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--border);padding:10px 24px;background:var(--cream);}
+.order-ref-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-muted);font-weight:500;}
+.order-ref-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--brown);letter-spacing:1px;}
+
+/* ── MAIN GRID ── */
+.confirm-main{display:grid;grid-template-columns:1fr 340px;gap:48px;padding:48px 80px;max-width:1200px;margin:0 auto;align-items:start;}
+
+/* ORDER SUMMARY */
+.summary-section{}
+.section-title-sm{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dark);font-weight:500;margin-bottom:4px;}
+.item-count{font-size:11.5px;color:var(--brown-muted);margin-bottom:24px;font-weight:300;}
+.order-items{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);}
+.order-item{display:grid;grid-template-columns:80px 1fr auto;gap:20px;padding:20px;border-bottom:1px solid var(--border);align-items:center;}
+.order-item:last-of-type{border-bottom:none;}
+.item-thumb{width:80px;height:80px;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.item-thumb svg{width:48px;height:48px;}
+.item-details{}
+.item-name{font-size:12px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-dark);font-weight:500;margin-bottom:4px;}
+.item-meta{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:6px;font-weight:300;}
+.item-qty{font-size:11.5px;color:var(--text-mid);font-weight:300;}
+.item-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--brown);font-weight:500;white-space:nowrap;}
+
+.order-totals{margin-top:0;border:1px solid var(--border);border-top:none;padding:20px;display:flex;flex-direction:column;gap:10px;}
+.total-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-mid);}
+.total-row.grand{border-top:1px solid var(--border);padding-top:14px;margin-top:4px;}
+.total-row.grand .total-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dark);font-weight:500;}
+.total-row.grand .total-val{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:500;}
+
+/* DELIVERY */
+.delivery-section{margin-top:32px;}
+.delivery-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.delivery-card{border:1px solid var(--border);padding:18px 20px;display:flex;gap:14px;align-items:flex-start;background:var(--cream);}
+.delivery-card-icon{color:var(--gold);width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+.delivery-info-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:6px;font-weight:500;}
+.delivery-info-val{font-size:14px;font-weight:500;color:var(--text-dark);}
+.delivery-info-sub{font-size:11px;color:var(--text-mid);font-weight:300;margin-top:3px;}
+
+/* RIGHT SIDEBAR */
+.confirm-sidebar{display:flex;flex-direction:column;gap:20px;}
+
+.cert-card{border:1px solid var(--border);padding:28px;background:var(--cream);text-align:center;}
+.cert-icon{color:var(--gold);margin-bottom:16px;}
+.cert-icon svg{width:40px;height:40px;}
+.cert-title{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:500;color:var(--text-dark);margin-bottom:10px;}
+.cert-body{font-size:12px;color:var(--text-mid);line-height:1.8;font-weight:300;margin-bottom:18px;}
+.cert-preview-btn{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border);padding:10px;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown);cursor:pointer;background:transparent;transition:all 0.2s;width:100%;}
+.cert-preview-btn:hover{background:var(--white);border-color:var(--brown);}
+.cert-preview-btn svg{width:13px;height:13px;}
+
+.actions-card{border:1px solid var(--border);padding:24px;}
+.actions-title{font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-mid);font-weight:500;margin-bottom:18px;}
+.action-btn-primary{width:100%;background:var(--gold);color:var(--brown-dark);padding:13px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+.action-btn-primary:hover{background:var(--gold-light);}
+.action-btn-primary svg{width:14px;height:14px;}
+.action-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.action-btn-sm{padding:10px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--text-mid);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.action-btn-sm:hover{border-color:var(--brown);color:var(--brown);}
+.action-btn-sm svg{width:12px;height:12px;}
+.share-btn{width:100%;padding:10px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--text-mid);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.share-btn:hover{border-color:var(--brown);color:var(--brown);}
+.share-btn svg{width:12px;height:12px;}
+
+.support-card{border:1px solid var(--border);padding:22px;background:var(--cream);}
+.support-icon{color:var(--gold);margin-bottom:10px;}
+.support-icon svg{width:18px;height:18px;}
+.support-text{font-size:12px;color:var(--text-mid);line-height:1.8;font-weight:300;margin-bottom:12px;}
+.support-link{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:6px;}
+.support-link:hover{color:var(--brown);}
+.support-link svg{width:10px;height:10px;}
+
+.back-home-link{display:block;text-align:center;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-muted);text-decoration:none;padding:10px;transition:color 0.2s;}
+.back-home-link:hover{color:var(--brown);}
+
+/* ── COMPLETING THE LOOK ── */
+.look-section{padding:60px 80px;border-top:1px solid var(--border);}
+.look-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;}
+.look-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;}
+.look-sub{font-size:12px;color:var(--text-mid);font-weight:300;margin-top:4px;}
+.look-link{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+.look-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.look-card{cursor:pointer;transition:transform 0.25s;}
+.look-card:hover{transform:translateY(-4px);}
+.look-img{aspect-ratio:1;background:linear-gradient(135deg,var(--cream-dark),var(--cream));margin-bottom:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.look-img-label{position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,0.9);padding:4px 8px;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-muted);}
+.look-name{font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-dark);margin-bottom:4px;}
+.look-price{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--brown);}
+
+/* ── PILLARS ── */
+.pillars-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);margin:0 80px;}
+.pillar-item{padding:32px 24px;text-align:center;border-right:1px solid var(--border);}
+.pillar-item:last-child{border-right:none;}
+.pillar-item-icon{color:var(--gold);margin-bottom:12px;}
+.pillar-item-icon svg{width:22px;height:22px;}
+.pillar-item-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dark);font-weight:500;margin-bottom:6px;}
+.pillar-item-body{font-size:11.5px;color:var(--text-mid);line-height:1.7;font-weight:300;}
+
+/* ── CTA ── */
+.cta-strip{background:var(--cream);padding:72px 80px;text-align:center;margin-top:60px;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--text-dark);margin-bottom:32px;font-style:italic;}
+.cta-btns{display:flex;justify-content:center;gap:16px;}
+.btn-gold{background:var(--gold);color:var(--brown-dark);padding:14px 36px;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;transition:background 0.2s;}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{background:transparent;color:var(--text-dark);padding:14px 36px;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--brown);color:var(--brown);}
+
+/* FOOTER */
+footer{background:var(--brown-dark);color:rgba(255,255,255,0.75);padding:60px 80px 32px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--white);letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.footer-tagline{font-size:12px;line-height:1.9;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:24px;}
+.footer-col-title{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:500;margin-bottom:20px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{text-decoration:none;color:rgba(255,255,255,0.65);font-size:13px;font-weight:300;transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.newsletter-form{display:flex;}
+.newsletter-input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:11px 14px;font-family:'Jost',sans-serif;font-size:11.5px;color:rgba(255,255,255,0.8);outline:none;}
+.newsletter-btn{background:var(--gold);color:var(--brown-dark);border:none;padding:11px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:500;}
+.newsletter-text{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.7;font-weight:300;}
+.footer-social{display:flex;gap:14px;}
+.social-btn{width:34px;height:34px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:all 0.2s;text-decoration:none;}
+.social-btn svg{width:14px;height:14px;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.footer-trust-row{display:flex;gap:32px;}
+.f-trust-item{display:flex;align-items:center;gap:8px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.f-trust-item svg{width:12px;height:12px;}
+.footer-copy{font-size:10.5px;color:rgba(255,255,255,0.3);letter-spacing:1px;}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">FREE SHIPPING ON ALL ORDERS • BIS HALLMARKED CERTIFIED GOLD</div>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="trilok-product-listing.html">Rings <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Earrings <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Necklaces <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Bangles <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Bridal <span class="nav-chevron">▾</span></a></li>
+    <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+  </ul>
+  <a href="trilok-jewellery (2).html" class="nav-logo"><span class="nav-logo-diamond">◆</span>TRILOK – OM SRI JEWEL</a>
+  <div class="nav-actions">
+    <div class="nav-search-bar">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Search...
+    </div>
+    <a href="trilok-cart.html" class="nav-icon">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <a href="login-signup.html">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="confirm-hero">
+  <div class="success-circle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div class="confirm-label">Transaction Successful</div>
+  <h1 class="confirm-title">Your Elegance is on its way.</h1>
+  <p class="confirm-sub">Thank you for your order. We are preparing your handcrafted piece with the utmost care and precision.</p>
+  <div class="order-ref-pill">
+    <span class="order-ref-label">Order Reference</span>
+    <span class="order-ref-val">TRK-99281-XLP</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="confirm-main">
+  <!-- LEFT: SUMMARY + DELIVERY -->
+  <div>
+    <div class="summary-section">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;">
+        <div class="section-title-sm">Order Summary</div>
+        <div class="item-count">2 Items</div>
+      </div>
+
+      <div class="order-items">
+        <div class="order-item">
+          <div class="item-thumb">
+            <svg width="48" height="48" viewBox="0 0 80 80" fill="none">
+              <defs><radialGradient id="og1"><stop offset="0%" stop-color="#fff8e0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient><radialGradient id="od1"><stop offset="0%" stop-color="#fff"/><stop offset="60%" stop-color="#e8f4ff"/><stop offset="100%" stop-color="#90c4f8"/></radialGradient></defs>
+              <ellipse cx="40" cy="65" rx="26" ry="7" fill="url(#og1)" opacity="0.85"/>
+              <rect x="20" y="38" width="40" height="27" rx="4" fill="url(#og1)"/>
+              <ellipse cx="40" cy="38" rx="20" ry="5" fill="#e8c870"/>
+              <circle cx="40" cy="22" r="15" fill="url(#og1)"/>
+              <ellipse cx="40" cy="22" rx="9" ry="11" fill="url(#od1)"/>
+            </svg>
+          </div>
+          <div class="item-details">
+            <div class="item-name">Ethereal Bloom Diamond Ring</div>
+            <div class="item-meta">18K Rose Gold · 0.5CT VVS Diamond</div>
+            <div class="item-qty">Qty: 1</div>
+          </div>
+          <div class="item-price">₹85,500</div>
+        </div>
+        <div class="order-item">
+          <div class="item-thumb">
+            <svg width="48" height="48" viewBox="0 0 80 80" fill="none">
+              <defs><radialGradient id="og2"><stop offset="0%" stop-color="#fff8e0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient><radialGradient id="or2"><stop offset="0%" stop-color="#ff9090"/><stop offset="50%" stop-color="#cc4020"/><stop offset="100%" stop-color="#7a1800"/></radialGradient></defs>
+              <path d="M14 24 Q40 42 66 24" stroke="url(#og2)" stroke-width="2" fill="none"/>
+              <circle cx="40" cy="42" r="10" fill="url(#og2)"/>
+              <ellipse cx="40" cy="42" rx="6" ry="7" fill="url(#or2)"/>
+              <circle cx="24" cy="30" r="5" fill="url(#og2)"/>
+              <circle cx="56" cy="30" r="5" fill="url(#og2)"/>
+            </svg>
+          </div>
+          <div class="item-details">
+            <div class="item-name">Royal Heritage Chandbali Earrings</div>
+            <div class="item-meta">22K Yellow Gold · Polki Work</div>
+            <div class="item-qty">Qty: 1</div>
+          </div>
+          <div class="item-price">₹1,24,000</div>
+        </div>
+        <div class="order-totals">
+          <div class="total-row"><span>Subtotal</span><span>₹2,09,500</span></div>
+          <div class="total-row"><span>Shipping (Insured)</span><span style="color:#2a8a2a">Free</span></div>
+          <div class="total-row"><span>GST (3%)</span><span>₹6,285</span></div>
+          <div class="total-row grand">
+            <span class="total-label">Order Total</span>
+            <span class="total-val">₹2,15,785</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELIVERY -->
+    <div class="delivery-section">
+      <div class="section-title-sm" style="margin-bottom:16px;">Delivery Information</div>
+      <div class="delivery-cards">
+        <div class="delivery-card">
+          <svg class="delivery-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div>
+            <div class="delivery-info-label">Expected Arrival</div>
+            <div class="delivery-info-val">October 24th, 2024</div>
+            <div class="delivery-info-sub">By 8:00 PM</div>
+          </div>
+        </div>
+        <div class="delivery-card">
+          <svg class="delivery-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <div class="delivery-info-label">Shipping Method</div>
+            <div class="delivery-info-val">Insured Express Courier</div>
+            <div class="delivery-info-sub">Tracking No: DHB-200608-11</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="back-home-link" style="display:inline-block;margin-top:24px;padding:0;text-align:left;">← Back to Home</a>
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="confirm-sidebar">
+    <div class="cert-card">
+      <div class="cert-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      </div>
+      <div class="cert-title">Digital Certificate of Authenticity</div>
+      <p class="cert-body">Every piece from Trilok is BIS Hallmarked and comes with a certified diamond/gemstone report. Your digital copy is now ready.</p>
+      <button class="cert-preview-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+        Preview Certificate
+      </button>
+    </div>
+
+    <div class="actions-card">
+      <div class="actions-title">Quick Actions</div>
+      <button class="action-btn-primary">
+        Track My Shipment
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="action-btns-row">
+        <button class="action-btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Receipt
+        </button>
+        <button class="action-btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </button>
+      </div>
+      <button class="share-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share Collection
+      </button>
+    </div>
+
+    <div class="support-card">
+      <div class="support-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <p class="cert-title" style="text-align:left;font-size:10.5px;margin-bottom:8px;">Need assistance?</p>
+      <p class="support-text">If you have any questions regarding your order, our luxury concierge is available 24/7 to assist you.</p>
+      <a href="#" class="support-link">Contact Support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <a href="#" class="back-home-link">Back to Home</a>
+  </div>
+</div>
+
+<!-- COMPLETING THE LOOK -->
+<div class="look-section">
+  <div class="look-header">
+    <div>
+      <h2 class="look-title">Completing the Look</h2>
+      <p class="look-sub">Chosen by our stylists to complement your purchase.</p>
+    </div>
+    <a href="#" class="look-link">View All Collection →</a>
+  </div>
+  <div class="look-grid">
+    <div class="look-card">
+      <div class="look-img">
+        <svg width="80" height="80" viewBox="0 0 100 60" fill="none"><defs><radialGradient id="lk1"><stop offset="0%" stop-color="#fff8e0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs><path d="M5 10 Q50 45 95 10" stroke="url(#lk1)" stroke-width="5" fill="none"/><path d="M5 10 Q50 45 95 10" stroke="url(#lk1)" stroke-width="8" fill="none" opacity="0.3"/></svg>
+        <div class="look-img-label">Bangle</div>
+      </div>
+      <div class="look-name">Gilded Lace Bangle</div>
+      <div class="look-price">₹42,000</div>
+    </div>
+    <div class="look-card">
+      <div class="look-img">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><defs><radialGradient id="lk2"><stop offset="0%" stop-color="#fff8e0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient><radialGradient id="lks2"><stop offset="0%" stop-color="#ffcc80"/><stop offset="50%" stop-color="#e8a020"/><stop offset="100%" stop-color="#a06010"/></radialGradient></defs><line x1="40" y1="8" x2="40" y2="28" stroke="url(#lk2)" stroke-width="2"/><polygon points="40,28 48,44 40,52 32,44" fill="url(#lks2)" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/><circle cx="40" cy="28" r="6" fill="url(#lk2)"/></svg>
+        <div class="look-img-label">Pendant</div>
+      </div>
+      <div class="look-name">Celestial Star Pendant</div>
+      <div class="look-price" style="text-decoration:line-through;color:var(--brown-muted)">₹28,500</div>
+    </div>
+    <div class="look-card">
+      <div class="look-img">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><defs><radialGradient id="lk3"><stop offset="0%" stop-color="#fff8e0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs><path d="M20 40 Q30 28 40 40 Q50 52 60 40" stroke="url(#lk3)" stroke-width="4" fill="none"/><circle cx="20" cy="40" r="5" fill="url(#lk3)"/><circle cx="60" cy="40" r="5" fill="url(#lk3)"/></svg>
+        <div class="look-img-label">Bracelet</div>
+      </div>
+      <div class="look-name">Infinity Love Bracelet</div>
+      <div class="look-price">₹15,900</div>
+    </div>
+    <div class="look-card">
+      <div class="look-img">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><defs><radialGradient id="lk4"><stop offset="0%" stop-color="#f8f4f0"/><stop offset="50%" stop-color="#e0d0c0"/><stop offset="100%" stop-color="#b89880"/></radialGradient></defs><circle cx="30" cy="40" r="12" fill="url(#lk4)"/><ellipse cx="26" cy="36" rx="4" ry="5" fill="rgba(255,255,255,0.5)"/><circle cx="50" cy="40" r="12" fill="url(#lk4)"/><ellipse cx="46" cy="36" rx="4" ry="5" fill="rgba(255,255,255,0.5)"/></svg>
+        <div class="look-img-label">Set</div>
+      </div>
+      <div class="look-name">Mistana Studs Set</div>
+      <div class="look-price">₹9,800</div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<div class="pillars-bar">
+  <div class="pillar-item">
+    <div class="pillar-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="pillar-item-title">100% Certified</div>
+    <p class="pillar-item-body">Hallmarked Gold &amp; Certified Diamonds</p>
+  </div>
+  <div class="pillar-item">
+    <div class="pillar-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+    <div class="pillar-item-title">Insured Shipping</div>
+    <p class="pillar-item-body">Safe, secure, and complimentary delivery</p>
+  </div>
+  <div class="pillar-item">
+    <div class="pillar-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+    <div class="pillar-item-title">Lifetime Exchange</div>
+    <p class="pillar-item-body">Quality assurance that lasts generations</p>
+  </div>
+  <div class="pillar-item">
+    <div class="pillar-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div class="pillar-item-title">180+ Showrooms</div>
+    <p class="pillar-item-body">Experience the craft at a boutique near you</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2 class="cta-title">Discover more of the collection.</h2>
+  <div class="cta-btns">
+    <a href="trilok-jewellery (2).html" class="btn-gold">Continue Shopping</a>
+    <a href="trilok-product-listing.html" class="btn-outline">Explore Bridal</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span style="color:var(--gold)">◆</span>TRILOK – OM SRI JEWEL</div>
+      <p class="footer-tagline">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern virtual innovation.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links"><li><a href="#">Bridal Heritage</a></li><li><a href="#">Everyday Elegance</a></li><li><a href="#">Temple Jewellery</a></li><li><a href="#">Modern Minimalism</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Customer Care</div>
+      <ul class="footer-links"><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Store Locator</a></li><li><a href="#">Gold Rate Guide</a></li><li><a href="#">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Join The Inner Circle</div>
+      <p class="newsletter-text">Receive updates on new collections and exclusive events.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Email Address">
+        <button class="newsletter-btn">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-trust-row">
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>BIS Hallmark</div>
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Lifetime Exchange</div>
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Payment</div>
+    </div>
+    <div class="footer-copy">© 2024 Trilok – OM SRI JEWEL. All Rights Reserved.</div>
+  </div>
+</footer>
+</body>
+</html>

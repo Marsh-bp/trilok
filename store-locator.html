@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Boutiques — Trilok Om Sri Jewel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown:#73402a; --brown-light:#9a5a3c; --brown-dark:#4e2b1a;
+  --brown-muted:#b5815f; --cream:#fdf8f4; --white:#ffffff;
+  --gold:#c9a96e; --gold-light:#f0d890; --text-dark:#2a1a10; --text-mid:#5c3d27;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden}
+
+.announce-bar{background:var(--brown);color:var(--white);text-align:center;padding:10px 20px;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300}
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(115,64,42,0.1);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--brown);letter-spacing:4px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-diamond{color:var(--gold);font-size:16px}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-dark);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;position:relative;padding-bottom:3px;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown);transition:width .3s}
+.nav-links a:hover{color:var(--brown)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--brown);stroke-width:1.5;transition:transform .2s}
+.nav-icon:hover{transform:scale(1.15)}
+.nav-count{position:relative}
+.nav-count-badge{position:absolute;top:-6px;right:-8px;width:16px;height:16px;border-radius:50%;background:var(--brown);color:var(--white);font-size:9px;display:flex;align-items:center;justify-content:center}
+.nav-btn{background:var(--brown);color:var(--white);border:none;padding:9px 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.nav-btn:hover{background:var(--brown-dark)}
+
+/* LOCATOR LAYOUT */
+.locator-wrap{display:grid;grid-template-columns:420px 1fr;height:calc(100vh - 112px);position:sticky;top:72px}
+
+/* LEFT PANEL */
+.locator-panel{background:var(--white);border-right:1px solid rgba(115,64,42,.08);display:flex;flex-direction:column;overflow:hidden}
+.locator-header{padding:32px 28px 0}
+.locator-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--text-dark);margin-bottom:10px;line-height:1.1}
+.locator-sub{font-size:13px;color:#6b4c38;font-weight:300;line-height:1.8;margin-bottom:24px}
+.locator-search{position:relative;margin-bottom:14px}
+.locator-search input{width:100%;padding:13px 16px 13px 40px;border:1px solid rgba(115,64,42,.2);background:var(--cream);color:var(--text-dark);font-family:'Jost',sans-serif;font-size:12.5px;outline:none;transition:border-color .3s}
+.locator-search input:focus{border-color:var(--brown);background:var(--white)}
+.locator-search input::placeholder{color:rgba(115,64,42,.4)}
+.locator-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--brown-muted)}
+.locator-actions{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.locator-use-loc{display:flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown);cursor:pointer;transition:gap .3s}
+.locator-use-loc:hover{gap:10px}
+.locator-filter-btn{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dark);cursor:pointer;letter-spacing:.5px}
+.locator-filter-btn svg{color:var(--brown-muted)}
+.locator-count{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);padding:0 28px 12px;font-weight:500}
+
+/* STORE LIST */
+.store-list{flex:1;overflow-y:auto;padding:0 28px 28px}
+.store-list::-webkit-scrollbar{width:4px}
+.store-list::-webkit-scrollbar-track{background:transparent}
+.store-list::-webkit-scrollbar-thumb{background:rgba(115,64,42,.2);border-radius:2px}
+
+.store-card{border:1px solid rgba(115,64,42,.1);margin-bottom:14px;cursor:pointer;transition:all .3s;overflow:hidden;background:var(--white)}
+.store-card:hover{border-color:rgba(115,64,42,.3);box-shadow:0 6px 24px rgba(115,64,42,.08)}
+.store-card.active{border-color:var(--brown);box-shadow:0 6px 28px rgba(115,64,42,.12)}
+.store-card-top{display:grid;grid-template-columns:100px 1fr;gap:0}
+.store-img{height:110px;background:var(--brown-dark);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.store-img.light{background:#f5ede5}
+.store-img.dark{background:var(--brown-dark)}
+.store-img svg{opacity:.3}
+.store-flagship-badge{position:absolute;top:8px;left:8px;background:var(--gold);color:var(--brown-dark);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:4px 8px;font-weight:600}
+.store-details{padding:14px 16px}
+.store-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-dark);margin-bottom:5px;line-height:1.2}
+.store-address{display:flex;align-items:flex-start;gap:5px;font-size:11.5px;color:#6b4c38;font-weight:300;line-height:1.6;margin-bottom:8px}
+.store-address svg{flex-shrink:0;margin-top:2px;color:var(--brown-muted)}
+.store-meta{display:flex;align-items:center;gap:14px;font-size:11px;color:#6b4c38}
+.store-meta-item{display:flex;align-items:center;gap:5px}
+.store-meta-item svg{color:var(--brown);flex-shrink:0}
+.store-tags{padding:10px 16px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid rgba(115,64,42,.06)}
+.store-tag{background:rgba(115,64,42,.06);color:var(--brown);font-size:10px;letter-spacing:1px;padding:4px 10px;font-weight:400}
+.store-card-actions{padding:12px 16px;display:flex;gap:8px;border-top:1px solid rgba(115,64,42,.06)}
+.btn-appoint{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:var(--brown);color:var(--white);border:none;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.btn-appoint:hover{background:var(--brown-dark)}
+.btn-directions{width:40px;height:40px;border:1px solid rgba(115,64,42,.25);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--brown);transition:all .3s;flex-shrink:0}
+.btn-directions:hover{background:var(--cream);border-color:var(--brown)}
+
+/* MAP */
+.map-area{position:relative;background:var(--cream);overflow:hidden}
+.map-viewing-pill{position:absolute;top:18px;left:50%;transform:translateX(-50%);z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border:1px solid rgba(115,64,42,.15);padding:9px 18px;font-size:11px;letter-spacing:1.5px;color:var(--text-dark);display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.map-viewing-pill svg{color:var(--brown);flex-shrink:0}
+.map-expand{position:absolute;top:18px;right:18px;z-index:10;width:36px;height:36px;background:rgba(255,255,255,.95);border:1px solid rgba(115,64,42,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--brown);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+
+/* Stylised map background */
+.map-bg{position:absolute;inset:0;background:linear-gradient(160deg,#f5e8d8 0%,#edd8b8 40%,#e8c97a 100%)}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(115,64,42,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(115,64,42,.06) 1px,transparent 1px);background-size:40px 40px}
+.map-road-h{position:absolute;background:rgba(255,255,255,.6);height:6px;border-radius:3px}
+.map-road-v{position:absolute;background:rgba(255,255,255,.6);width:6px;border-radius:3px}
+
+/* Map markers */
+.map-marker{position:absolute;cursor:pointer;z-index:5;transform:translate(-50%,-100%)}
+.map-marker-dot{width:28px;height:28px;border-radius:50%;background:var(--brown);border:3px solid var(--white);box-shadow:0 4px 14px rgba(115,64,42,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.map-marker:hover .map-marker-dot{transform:scale(1.2)}
+.map-marker.active .map-marker-dot{background:var(--brown-dark);transform:scale(1.15)}
+.map-marker-dot svg{color:var(--white)}
+
+/* Map popup */
+.map-popup{position:absolute;z-index:20;background:var(--white);border:1px solid rgba(115,64,42,.15);padding:16px 20px;min-width:240px;box-shadow:0 10px 40px rgba(115,64,42,.15);transform:translate(-50%,-120%)}
+.map-popup::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:14px;height:14px;background:var(--white);border-right:1px solid rgba(115,64,42,.15);border-bottom:1px solid rgba(115,64,42,.15);transform:translateX(-50%) rotate(45deg)}
+.map-popup-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-dark);margin-bottom:4px}
+.map-popup-addr{font-size:11px;color:#6b4c38;font-weight:300;margin-bottom:12px;line-height:1.6}
+.map-popup-actions{display:flex;gap:8px}
+.map-popup-btn{flex:1;text-align:center;padding:7px 10px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;text-decoration:none}
+.map-popup-btn.store{color:var(--brown);border:1px solid rgba(115,64,42,.25);background:var(--white)}
+.map-popup-btn.store:hover{background:var(--cream)}
+.map-popup-btn.dir{color:var(--white);background:var(--brown);border:1px solid var(--brown)}
+.map-popup-btn.dir:hover{background:var(--brown-dark)}
+
+/* Map controls */
+.map-controls{position:absolute;bottom:30px;right:18px;z-index:10;display:flex;flex-direction:column;gap:1px}
+.map-ctrl{width:32px;height:32px;background:rgba(255,255,255,.95);border:1px solid rgba(115,64,42,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--brown);font-size:16px;font-weight:300;box-shadow:0 2px 6px rgba(0,0,0,.06);transition:background .2s}
+.map-ctrl:hover{background:var(--cream)}
+
+/* TRUST STRIP */
+.trust-strip{background:var(--white);border-top:1px solid rgba(115,64,42,.08);border-bottom:1px solid rgba(115,64,42,.08);padding:14px 80px;display:flex;align-items:center;justify-content:space-between}
+.trust-left{display:flex;gap:0}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);padding:0 32px;border-right:1px solid rgba(115,64,42,.08)}
+.trust-item:first-child{padding-left:0}
+.trust-item svg{color:var(--brown);flex-shrink:0}
+.trust-right{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-muted)}
+.trust-right span{color:var(--brown);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--cream);padding:70px 80px 34px;border-top:1px solid rgba(115,64,42,.1)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-brand-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--brown);letter-spacing:4px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.footer-brand-logo span{color:var(--gold);font-size:14px}
+.footer-desc{font-size:12px;color:#9a7060;line-height:1.9;font-weight:300;margin-bottom:24px}
+.footer-socials{display:flex;gap:9px}
+.social-btn{width:34px;height:34px;border:1px solid rgba(115,64,42,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:12px;color:var(--brown);text-decoration:none}
+.social-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.footer-col-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--brown);font-weight:500;margin-bottom:18px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{text-decoration:none;font-size:12.5px;color:#7a5a48;font-weight:300;transition:color .3s}
+.footer-links a:hover{color:var(--brown)}
+.footer-bottom{border-top:1px solid rgba(115,64,42,.1);padding-top:24px;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:#9a7060;font-weight:300}
+.footer-bottom-links{display:flex;gap:20px;list-style:none}
+.footer-bottom-links a{font-size:11px;color:#9a7060;text-decoration:none}
+.footer-bottom-links a:hover{color:var(--brown)}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">Free Shipping on All Orders &nbsp;·&nbsp; BIS Hallmarked Certified Gold</div>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="trilok-product-listing.html">Rings</a></li>
+    <li><a href="trilok-product-listing.html">Earrings</a></li>
+    <li><a href="trilok-product-listing.html">Necklaces</a></li>
+    <li><a href="trilok-product-listing.html">Bangles</a></li>
+    <li><a href="trilok-product-listing.html">Bridal</a></li>
+    <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+  </ul>
+  <a href="trilok-jewellery (2).html" class="nav-logo">
+    <span class="nav-logo-diamond">◇</span>
+    TRILOK – OM SRI JEWEL
+  </a>
+  <div class="nav-actions">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <a href="trilok-cart.html" class="nav-count">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <a href="trilok-cart.html" class="nav-count">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="nav-count-badge">2</span>
+    </a>
+    <a href="login-signup.html">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN LOCATOR -->
+<div class="locator-wrap">
+  <!-- Left Panel -->
+  <div class="locator-panel">
+    <div class="locator-header">
+      <h1 class="locator-title">Our Boutiques</h1>
+      <p class="locator-sub">Discover the exquisite world of Trilok in person. Locate our flagship showrooms and boutiques near you.</p>
+      <div class="locator-search">
+        <span class="locator-search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <input type="text" placeholder="Search by City, State or Zip Code…" id="searchInput" oninput="filterStores()">
+      </div>
+      <div class="locator-actions">
+        <div class="locator-use-loc" onclick="useLocation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Use Current Location
+        </div>
+        <div class="locator-filter-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filters
+        </div>
+      </div>
+    </div>
+    <div class="locator-count" id="storeCount">3 Locations Found</div>
+    <div class="store-list" id="storeList">
+
+      <!-- Store 1 - Flagship Mumbai -->
+      <div class="store-card active" id="card-0" onclick="selectStore(0)">
+        <div class="store-card-top">
+          <div class="store-img dark">
+            <div class="store-flagship-badge">Flagship</div>
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+              <rect x="20" y="40" width="60" height="40" rx="2"/>
+              <path d="M30 40V25h40v15"/>
+              <rect x="40" y="55" width="20" height="25" rx="1"/>
+              <line x1="20" y1="40" x2="80" y2="40"/>
+            </svg>
+          </div>
+          <div class="store-details">
+            <div class="store-name">Trilok Heritage Flagship — Mumbai</div>
+            <div class="store-address">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              124, Gold Souk Plaza, Bandra West, Mumbai
+            </div>
+            <div class="store-meta">
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10:30 AM – 8:30 PM
+              </div>
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72"/></svg>
+                +91 22 2640 1234
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="store-tags">
+          <span class="store-tag">Bridal Lounge</span>
+          <span class="store-tag">Virtual Try-On Hub</span>
+          <span class="store-tag">Custom Design</span>
+        </div>
+        <div class="store-card-actions">
+          <button class="btn-appoint">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Appoint an Expert
+          </button>
+          <button class="btn-directions">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Store 2 - New Delhi -->
+      <div class="store-card" id="card-1" onclick="selectStore(1)">
+        <div class="store-card-top">
+          <div class="store-img light">
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" stroke="rgba(115,64,42,.4)" stroke-width="1.5">
+              <circle cx="50" cy="38" r="18"/>
+              <path d="M32 56 Q50 75 68 56"/>
+              <line x1="50" y1="20" x2="50" y2="16"/>
+              <line x1="50" y1="58" x2="50" y2="75"/>
+            </svg>
+          </div>
+          <div class="store-details">
+            <div class="store-name">Trilok Boutique — New Delhi</div>
+            <div class="store-address">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              H-5/1, Ambawatta One, Mehrauli, New Delhi
+            </div>
+            <div class="store-meta">
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                11:00 AM – 8:00 PM
+              </div>
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72"/></svg>
+                +91 11 4061 5500
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="store-tags">
+          <span class="store-tag">Temple Collection</span>
+          <span class="store-tag">AR Studio</span>
+        </div>
+        <div class="store-card-actions">
+          <button class="btn-appoint">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Appoint an Expert
+          </button>
+          <button class="btn-directions">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Store 3 - Bangalore -->
+      <div class="store-card" id="card-2" onclick="selectStore(2)">
+        <div class="store-card-top">
+          <div class="store-img" style="background:#2a1a10">
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" stroke="rgba(201,169,110,.4)" stroke-width="1.5">
+              <path d="M50 15 L80 35 L80 75 L20 75 L20 35 Z"/>
+              <rect x="38" y="52" width="24" height="23" rx="1"/>
+              <line x1="38" y1="38" x2="62" y2="38"/>
+              <circle cx="50" cy="38" r="8"/>
+            </svg>
+          </div>
+          <div class="store-details">
+            <div class="store-name">Trilok Gold Emporium — Bengaluru</div>
+            <div class="store-address">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              MG Road, UB City Mall, Level 3, Bengaluru
+            </div>
+            <div class="store-meta">
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10:00 AM – 9:00 PM
+              </div>
+              <div class="store-meta-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72"/></svg>
+                +91 80 4112 7700
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="store-tags">
+          <span class="store-tag">Gold Coins</span>
+          <span class="store-tag">South India Collections</span>
+          <span class="store-tag">VR Ready</span>
+        </div>
+        <div class="store-card-actions">
+          <button class="btn-appoint">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Appoint an Expert
+          </button>
+          <button class="btn-directions">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Area -->
+  <div class="map-area">
+    <div class="map-viewing-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Viewing all available boutiques in India
+    </div>
+    <div class="map-expand">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </div>
+
+    <!-- Stylised map -->
+    <div class="map-bg"></div>
+    <div class="map-grid"></div>
+    <!-- Roads -->
+    <div class="map-road-h" style="top:30%;left:0;right:0;opacity:.5"></div>
+    <div class="map-road-h" style="top:55%;left:5%;right:10%;opacity:.4"></div>
+    <div class="map-road-h" style="top:72%;left:20%;right:0;opacity:.3"></div>
+    <div class="map-road-v" style="left:35%;top:0;bottom:0;opacity:.4"></div>
+    <div class="map-road-v" style="left:60%;top:10%;bottom:20%;opacity:.3"></div>
+    <div class="map-road-v" style="left:75%;top:20%;bottom:0;opacity:.35"></div>
+
+    <!-- Markers -->
+    <div class="map-marker active" id="marker-0" style="left:62%;top:48%" onclick="selectStore(0)">
+      <div class="map-marker-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+      </div>
+    </div>
+    <div class="map-marker" id="marker-1" style="left:40%;top:22%" onclick="selectStore(1)">
+      <div class="map-marker-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+      </div>
+    </div>
+    <div class="map-marker" id="marker-2" style="left:52%;top:70%" onclick="selectStore(2)">
+      <div class="map-marker-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+      </div>
+    </div>
+
+    <!-- Active Popup -->
+    <div class="map-popup" id="mapPopup" style="left:62%;top:40%">
+      <div class="map-popup-name" id="popupName">Trilok Heritage Flagship — Mumbai</div>
+      <div class="map-popup-addr" id="popupAddr">124, Gold Souk Plaza, Bandra West</div>
+      <div class="map-popup-actions">
+        <a href="#" class="map-popup-btn store">Store Page</a>
+        <a href="#" class="map-popup-btn dir">Directions</a>
+      </div>
+    </div>
+
+    <!-- Map Controls -->
+    <div class="map-controls">
+      <div class="map-ctrl">+</div>
+      <div class="map-ctrl">−</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-left">
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      3 National Flagships
+    </div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Certified In-Store Experts
+    </div>
+    <div class="trust-item" style="border-right:none">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      VR Ready Showrooms
+    </div>
+  </div>
+  <div class="trust-right">Corporate Office: <span>+91 22 2000 4000</span></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">
+        <span>◇</span> TRILOK – OM SRI JEWEL
+      </div>
+      <p class="footer-desc">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern virtual innovation.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">tw</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Collections</p>
+      <ul class="footer-links">
+        <li><a href="#">Bridal Heritage</a></li>
+        <li><a href="#">Everyday Elegance</a></li>
+        <li><a href="#">Temple Jewellery</a></li>
+        <li><a href="#">Modern Minimalism</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Customer Care</p>
+      <ul class="footer-links">
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Store Locator</a></li>
+        <li><a href="#">Gold Rate Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Join The Inner Circle</p>
+      <p style="font-size:12px;color:#9a7060;font-weight:300;margin-bottom:14px;line-height:1.7">Receive updates on new collections and exclusive events.</p>
+      <div style="display:flex">
+        <input type="email" placeholder="Email Address" style="flex:1;padding:11px 14px;border:1px solid rgba(115,64,42,.2);background:var(--white);font-family:'Jost',sans-serif;font-size:12px;outline:none">
+        <button style="background:var(--brown);color:var(--white);border:none;padding:11px 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 Trilok — Om Sri Jewel. All Rights Reserved.</span>
+    <ul class="footer-bottom-links">
+      <li><a href="#">◎ BIS Hallmark</a></li>
+      <li><a href="#">Lifetime Exchange</a></li>
+      <li><a href="#">Secure Payment</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const stores = [
+  { name: 'Trilok Heritage Flagship — Mumbai', addr: '124, Gold Souk Plaza, Bandra West', markerLeft: '62%', markerTop: '48%', popupLeft: '62%', popupTop: '40%' },
+  { name: 'Trilok Boutique — New Delhi', addr: 'H-5/1, Ambawatta One, Mehrauli', markerLeft: '40%', markerTop: '22%', popupLeft: '40%', popupTop: '14%' },
+  { name: 'Trilok Gold Emporium — Bengaluru', addr: 'MG Road, UB City Mall, Level 3', markerLeft: '52%', markerTop: '70%', popupLeft: '52%', popupTop: '62%' }
+];
+
+let active = 0;
+
+function selectStore(i) {
+  active = i;
+  document.querySelectorAll('.store-card').forEach((c, idx) => {
+    c.classList.toggle('active', idx === i);
+  });
+  document.querySelectorAll('.map-marker').forEach((m, idx) => {
+    m.classList.toggle('active', idx === i);
+  });
+  const popup = document.getElementById('mapPopup');
+  popup.style.left = stores[i].popupLeft;
+  popup.style.top = stores[i].popupTop;
+  document.getElementById('popupName').textContent = stores[i].name;
+  document.getElementById('popupAddr').textContent = stores[i].addr;
+}
+
+function filterStores() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('.store-card');
+  let count = 0;
+  cards.forEach(c => {
+    const text = c.textContent.toLowerCase();
+    const show = !q || text.includes(q);
+    c.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+  document.getElementById('storeCount').textContent = count + ' Location' + (count !== 1 ? 's' : '') + ' Found';
+}
+
+function useLocation() {
+  alert('Location access requested. Showing nearest boutique.');
+  selectStore(0);
+}
+</script>
+</body>
+</html>

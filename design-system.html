@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System & Visual Language — Trilok</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown:#73402a; --brown-light:#9a5a3c; --brown-dark:#4e2b1a;
+  --brown-muted:#b5815f; --cream:#fdf8f4; --white:#ffffff;
+  --gold:#c9a96e; --gold-light:#f0d890; --text-dark:#2a1a10; --text-mid:#5c3d27;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden}
+
+.announce-bar{background:var(--brown);color:var(--white);text-align:center;padding:10px 20px;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300}
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(115,64,42,0.1);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:600;color:var(--brown);letter-spacing:7px;text-transform:uppercase;text-decoration:none;position:relative}
+.nav-logo::after{content:'✦';font-size:9px;color:var(--gold);position:absolute;top:3px;right:-14px}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-dark);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;position:relative;padding-bottom:3px;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown);transition:width .3s}
+.nav-links a:hover{color:var(--brown)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--brown);stroke-width:1.5;transition:transform .2s}
+.nav-icon:hover{transform:scale(1.15)}
+.nav-btn{background:var(--brown);color:var(--white);border:none;padding:9px 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.nav-btn:hover{background:var(--brown-dark)}
+
+/* HERO */
+.ds-hero{background:var(--cream);text-align:center;padding:80px 80px 70px;position:relative;overflow:hidden}
+.ds-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2373402a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.ds-breadcrumb{display:inline-flex;align-items:center;gap:8px;background:rgba(115,64,42,.08);border:1px solid rgba(115,64,42,.15);padding:6px 16px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown);margin-bottom:30px}
+.ds-hero h1{font-family:'Cormorant Garamond',serif;font-size:62px;font-weight:400;line-height:1.05;color:var(--text-dark);margin-bottom:18px}
+.ds-hero h1 em{font-style:italic;color:var(--brown)}
+.ds-hero-sub{font-size:13.5px;color:#6b4c38;line-height:1.85;max-width:500px;margin:0 auto;font-weight:300}
+
+/* SECTION COMMON */
+.ds-section{padding:72px 80px;border-top:1px solid rgba(115,64,42,.08)}
+.ds-section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:10px}
+.ds-section-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--text-dark);margin-bottom:8px}
+.ds-section-desc{font-size:13px;color:#6b4c38;font-weight:300;line-height:1.8;max-width:540px;margin-bottom:48px}
+
+/* COLORS */
+.colors-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.color-swatch{cursor:pointer}
+.swatch-block{height:88px;border:1px solid rgba(0,0,0,.06);transition:transform .2s}
+.color-swatch:hover .swatch-block{transform:scale(1.04)}
+.swatch-name{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dark);margin-top:10px;font-weight:500}
+.swatch-hex{font-size:10px;color:var(--brown-muted);margin-top:2px;font-family:monospace}
+
+/* TYPOGRAPHY */
+.type-showcase{background:var(--cream);padding:48px;border:1px solid rgba(115,64,42,.08)}
+.type-row{display:flex;align-items:baseline;gap:32px;padding:20px 0;border-bottom:1px solid rgba(115,64,42,.07)}
+.type-row:last-child{border-bottom:none}
+.type-meta{width:160px;flex-shrink:0}
+.type-meta-name{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted)}
+.type-meta-spec{font-size:10px;color:#aaa;margin-top:3px}
+.type-sample{flex:1}
+.t-hero-display{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:400;line-height:1.05;color:var(--text-dark)}
+.t-hero-display em{font-style:italic;color:var(--brown)}
+.t-section-heading{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--text-dark)}
+.t-body{font-size:13.5px;line-height:1.9;color:#6b4c38;font-weight:300;max-width:560px}
+.t-caption{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted)}
+
+/* INTERACTIVE PRIMITIVES */
+.prims-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.prim-group{margin-bottom:32px}
+.prim-group-label{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px}
+.btn-primary{background:var(--brown);color:var(--white);border:none;padding:14px 34px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.btn-primary:hover{background:var(--brown-dark)}
+.btn-outline{border:1px solid var(--brown);color:var(--brown);background:transparent;padding:13px 34px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.btn-outline:hover{background:var(--brown);color:var(--white)}
+.btn-ghost{background:transparent;color:var(--text-dark);border:1px solid rgba(115,64,42,.2);padding:13px 34px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.btn-ghost:hover{border-color:var(--brown);color:var(--brown)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+
+.select-wrap{position:relative;display:inline-block}
+.select-wrap select{appearance:none;background:var(--white);border:1px solid rgba(115,64,42,.25);color:var(--text-dark);padding:12px 44px 12px 16px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.5px;cursor:pointer;outline:none;min-width:200px}
+.select-wrap::after{content:'▾';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--brown);font-size:12px;pointer-events:none}
+.input-field{background:var(--white);border:1px solid rgba(115,64,42,.25);color:var(--text-dark);padding:12px 16px;font-family:'Jost',sans-serif;font-size:12px;outline:none;transition:border-color .3s;width:100%;max-width:340px}
+.input-field:focus{border-color:var(--brown)}
+.input-field::placeholder{color:rgba(115,64,42,.4)}
+.icon-row{display:flex;gap:10px;margin-top:8px}
+.icon-btn{width:40px;height:40px;border:1px solid rgba(115,64,42,.2);display:flex;align-items:center;justify-content:center;background:var(--white);cursor:pointer;transition:all .3s;color:var(--brown)}
+.icon-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.policy-note{font-size:11px;color:var(--brown-muted);display:flex;align-items:center;gap:7px;margin-top:12px;letter-spacing:.3px}
+.policy-note::before{content:'›';font-size:14px}
+
+/* COMPLEX COMPONENTS */
+.complex-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+
+/* Product Card */
+.product-card{background:var(--cream);position:relative;cursor:pointer;overflow:hidden}
+.product-img-wrap{aspect-ratio:3/4;background:var(--cream);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--brown);color:var(--white);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;z-index:4}
+.wishlist-btn{position:absolute;top:12px;right:12px;width:32px;height:32px;background:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:4}
+.wishlist-btn:hover{background:var(--brown);color:white}
+.product-tech-btns{position:absolute;bottom:12px;left:12px;right:12px;display:flex;gap:6px;opacity:1;z-index:5}
+.ptech-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 6px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer}
+.ptech-btn.ar-btn{background:var(--brown);color:var(--white)}
+.ptech-btn.view360-btn{background:rgba(255,255,255,.92);color:var(--brown);border:1px solid rgba(115,64,42,.2)}
+.product-info{padding:16px 15px 20px;background:var(--white)}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--text-dark);margin-bottom:5px;line-height:1.3}
+.product-material{font-size:10px;letter-spacing:1.5px;color:var(--brown-muted);text-transform:uppercase;margin-bottom:9px}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--brown)}
+.product-price-old{font-size:12px;color:#aaa;text-decoration:line-through;margin-left:7px;font-family:'Jost',sans-serif}
+.add-to-cart-btn{width:100%;margin-top:12px;padding:12px;background:var(--brown);color:var(--white);border:none;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.add-to-cart-btn:hover{background:var(--brown-dark)}
+
+/* Testimonial */
+.testi-card{background:var(--white);padding:34px 30px;border:1px solid rgba(115,64,42,.07);position:relative}
+.testi-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:70px;color:var(--brown);opacity:.12;position:absolute;top:10px;left:20px;line-height:1}
+.testi-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:15.5px;font-style:italic;line-height:1.75;color:var(--text-dark);margin-bottom:20px;font-weight:300}
+.testi-author{display:flex;align-items:center;gap:11px}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--brown);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Cormorant Garamond',serif;font-size:18px}
+.testi-name{font-size:12.5px;font-weight:500;color:var(--text-dark)}
+.testi-role{font-size:10.5px;color:var(--brown-muted);margin-top:2px}
+
+/* Filter Panel */
+.filter-panel{border:1px solid rgba(115,64,42,.1);padding:24px;background:var(--white)}
+.filter-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--brown);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.filter-reset{font-size:10px;color:var(--brown-muted);cursor:pointer;letter-spacing:1px}
+.filter-group{margin-bottom:20px}
+.filter-group-name{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dark);margin-bottom:10px;font-weight:500}
+.filter-range{display:flex;flex-direction:column;gap:8px}
+.filter-range input[type=range]{width:100%;accent-color:var(--brown);cursor:pointer}
+.range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--brown-muted)}
+.filter-checkbox{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-dark);margin-bottom:7px;cursor:pointer}
+.filter-checkbox input{accent-color:var(--brown);cursor:pointer}
+
+/* OVERLAYS */
+.overlays-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.alert-card{padding:16px 20px;display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;border-left:3px solid}
+.alert-card.success{background:#f0faf5;border-color:#22c55e}
+.alert-card.warning{background:#fff8f0;border-color:var(--brown)}
+.alert-card.info{background:#f5f0ff;border-color:#8b5cf6}
+.alert-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.alert-title{font-size:12.5px;font-weight:500;color:var(--text-dark);margin-bottom:3px}
+.alert-desc{font-size:11.5px;color:#6b4c38;line-height:1.7;font-weight:300}
+
+/* Quick View Modal */
+.quick-view-demo{border:1px solid rgba(115,64,42,.12);overflow:hidden;background:var(--white);box-shadow:0 20px 60px rgba(115,64,42,.1)}
+.qv-header{background:var(--brown);color:var(--white);padding:12px 18px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+.qv-close{background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:16px}
+.qv-body{display:grid;grid-template-columns:1fr 1fr}
+.qv-img{background:var(--cream);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:48px}
+.qv-info{padding:24px 20px}
+.qv-badge{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:6px}
+.qv-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--text-dark);margin-bottom:8px}
+.qv-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--brown);margin-bottom:16px}
+.qv-sizes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.qv-size{width:32px;height:32px;border:1px solid rgba(115,64,42,.25);display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;transition:all .2s;color:var(--text-dark)}
+.qv-size.active,.qv-size:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.qv-btn{width:100%;padding:12px;background:var(--brown);color:var(--white);border:none;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer}
+
+/* CTA SECTION */
+.ds-cta{background:var(--brown);padding:80px;text-align:center;position:relative;overflow:hidden}
+.ds-cta::before{content:'';position:absolute;width:400px;height:400px;border:1px solid rgba(255,255,255,.08);border-radius:50%;top:-150px;left:-80px}
+.ds-cta::after{content:'';position:absolute;width:300px;height:300px;border:1px solid rgba(255,255,255,.06);border-radius:50%;bottom:-100px;right:-60px}
+.ds-cta-inner{position:relative;z-index:1}
+.ds-cta-ornament{font-size:24px;color:rgba(255,255,255,.3);margin-bottom:18px;letter-spacing:12px}
+.ds-cta h2{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;color:var(--white);margin-bottom:16px;line-height:1.1}
+.ds-cta h2 em{font-style:italic;color:var(--gold-light)}
+.ds-cta-sub{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;margin-bottom:36px}
+.btn-white{background:var(--white);color:var(--brown);border:none;padding:14px 40px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.btn-white:hover{background:var(--cream)}
+
+/* FOOTER */
+footer{background:var(--cream);padding:70px 80px 34px;border-top:1px solid rgba(115,64,42,.1)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-brand-logo{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--brown);letter-spacing:6px;margin-bottom:12px;display:block}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:#9a7060;margin-bottom:16px;display:block}
+.footer-desc{font-size:12px;color:#9a7060;line-height:1.9;font-weight:300;margin-bottom:24px}
+.footer-socials{display:flex;gap:9px}
+.social-btn{width:34px;height:34px;border:1px solid rgba(115,64,42,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:12px;color:var(--brown);text-decoration:none}
+.social-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.footer-col-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--brown);font-weight:500;margin-bottom:18px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{text-decoration:none;font-size:12.5px;color:#7a5a48;font-weight:300;transition:color .3s}
+.footer-links a:hover{color:var(--brown)}
+.footer-bottom{border-top:1px solid rgba(115,64,42,.1);padding-top:24px;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:#9a7060;font-weight:300}
+.footer-bottom-links{display:flex;gap:20px;list-style:none}
+.footer-bottom-links a{font-size:11px;color:#9a7060;text-decoration:none;transition:color .3s}
+.footer-bottom-links a:hover{color:var(--brown)}
+
+.fade-up{opacity:0;transform:translateY(26px);transition:all .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Ring SVG in product demo */
+.ring-svg-demo{width:140px;height:140px}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">✦ &nbsp; Free Shipping on All Orders &nbsp;·&nbsp; BIS Hallmarked Certified Gold &nbsp; ✦</div>
+
+<nav>
+  <a href="trilok-jewellery (2).html" class="nav-logo">TRILOK</a>
+  <ul class="nav-links">
+    <li><a href="trilok-product-listing.html">Rings</a></li>
+    <li><a href="trilok-product-listing.html">Earrings</a></li>
+    <li><a href="trilok-product-listing.html">Necklaces</a></li>
+    <li><a href="trilok-product-listing.html">Bangles</a></li>
+    <li><a href="trilok-product-listing.html">Bridal</a></li>
+    <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+  </ul>
+  <div class="nav-actions">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <a href="trilok-cart.html" class="nav-icon">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <a href="trilok-cart.html" class="nav-icon">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </a>
+    <a href="login-signup.html"><button class="nav-btn">Sign In</button></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="ds-hero">
+  <div class="ds-breadcrumb">Foundation ✦</div>
+  <h1>Design System <em>&</em> Visual Language</h1>
+  <p class="ds-hero-sub">A comprehensive library of standardised components, typography, and Cormorant–Jost grammar designed for the TRILOK luxury e-commerce experience.</p>
+</div>
+
+<!-- COLORS -->
+<section class="ds-section fade-up">
+  <div class="ds-section-label">01 — Palette</div>
+  <div class="ds-section-title">Colours & Palette</div>
+  <p class="ds-section-desc">Our palette is built around refined warm-tones that signify heirloom-gold accents to convey luxury and heritage.</p>
+  <div class="colors-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#73402a"></div>
+      <div class="swatch-name">Primary Gold</div>
+      <div class="swatch-hex">#73402A</div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#9a5a3c"></div>
+      <div class="swatch-name">Light Brown</div>
+      <div class="swatch-hex">#9A5A3C</div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#c9a96e"></div>
+      <div class="swatch-name">Light Gold</div>
+      <div class="swatch-hex">#C9A96E</div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#fdf8f4"></div>
+      <div class="swatch-name">Tusk Ink</div>
+      <div class="swatch-hex">#FDF8F4</div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#2a1a10"></div>
+      <div class="swatch-name">Platform Dark</div>
+      <div class="swatch-hex">#2A1A10</div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#ffffff;border:1px solid #e0d0c0"></div>
+      <div class="swatch-name">Ivory White</div>
+      <div class="swatch-hex">#FFFFFF</div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="ds-section fade-up" style="background:var(--cream)">
+  <div class="ds-section-label">02 — Type</div>
+  <div class="ds-section-title">Typography Scale</div>
+  <p class="ds-section-desc">We use a sophisticated serif for storytelling and a clean, legible sans-serif for functional UI.</p>
+  <div class="type-showcase">
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">H1 Hero Display</div>
+        <div class="type-meta-spec">Cormorant / 56px / 400</div>
+      </div>
+      <div class="type-sample">
+        <div class="t-hero-display">Handcrafted Excellence Since<br><em>1994</em></div>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">H2 Section Heading</div>
+        <div class="type-meta-spec">Cormorant / 36px / 400</div>
+      </div>
+      <div class="type-sample">
+        <div class="t-section-heading">The Celestial Collection</div>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Body Sans Standard</div>
+        <div class="type-meta-spec">Jost / 13.5px / 300</div>
+      </div>
+      <div class="type-sample">
+        <p class="t-body">Each piece is meticulously crafted using ethically sourced materials, bringing together the wisdom of ancient Indian artistry and the precision of modern design.</p>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Fine Label / Caption</div>
+        <div class="type-meta-spec">Jost / 10px / Letter+4</div>
+      </div>
+      <div class="type-sample">
+        <div class="t-caption">Explore Heritage →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE PRIMITIVES -->
+<section class="ds-section fade-up">
+  <div class="ds-section-label">03 — Primitives</div>
+  <div class="ds-section-title">Interactive Primitives</div>
+  <p class="ds-section-desc">Buttons and form controls styled for high-intent actions and seamless navigation.</p>
+  <div class="prims-grid">
+    <div>
+      <div class="prim-group">
+        <div class="prim-group-label">Button Variations</div>
+        <div class="btn-row">
+          <button class="btn-primary">Add to Cart</button>
+          <button class="btn-outline">Outline Button</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn-ghost">Ghost Button</button>
+        </div>
+      </div>
+      <div class="prim-group">
+        <div class="prim-group-label">Icon Actions</div>
+        <div class="icon-row">
+          <button class="icon-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button class="icon-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+          <button class="icon-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="prim-group">
+        <div class="prim-group-label">Query & Select Input</div>
+        <div class="select-wrap" style="margin-bottom:12px">
+          <select>
+            <option>Select Jewellery…</option>
+            <option>Rings</option>
+            <option>Earrings</option>
+            <option>Necklaces</option>
+          </select>
+        </div>
+        <input type="text" class="input-field" placeholder="Search jewellery…" style="display:block">
+        <div class="policy-note">Applies to No 1.0% No Exchange Policy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLEX COMPONENTS -->
+<section class="ds-section fade-up" style="background:var(--cream)">
+  <div class="ds-section-label">04 — Components</div>
+  <div class="ds-section-title">Complex Components</div>
+  <p class="ds-section-desc">Integrated UI structures designed for commerce and trust-building.</p>
+  <div class="complex-grid">
+    <!-- Product Card -->
+    <div>
+      <div class="prim-group-label" style="font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px">Product Card / Tile</div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-badge">New</div>
+          <button class="wishlist-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <svg width="140" height="180" viewBox="0 0 260 320" fill="none">
+            <ellipse cx="130" cy="270" rx="70" ry="22" fill="#c9a96e" opacity="0.25"/>
+            <path d="M60 270 Q60 180 130 180 Q200 180 200 270" stroke="#e8c97a" stroke-width="18" fill="none" stroke-linecap="round"/>
+            <path d="M60 270 Q60 180 130 180 Q200 180 200 270" stroke="#f5e0a0" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".5"/>
+            <polygon points="130,100 155,140 130,175 105,140" fill="#e8f0ff" opacity=".9"/>
+            <polygon points="130,100 155,140 130,135" fill="white" opacity=".7"/>
+            <polygon points="130,100 105,140 130,135" fill="#c5d5f0" opacity=".5"/>
+          </svg>
+          <div class="product-tech-btns">
+            <button class="ptech-btn ar-btn">AR Try</button>
+            <button class="ptech-btn view360-btn">360°</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Nava Diamond Ring</div>
+          <div class="product-material">18K Yellow Gold · VS1</div>
+          <div>
+            <span class="product-price">₹1,18,999</span>
+            <span class="product-price-old">₹1,40,000</span>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial + Filter -->
+    <div>
+      <div class="prim-group-label" style="font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px">Testimonial Style</div>
+      <div class="testi-card" style="margin-bottom:24px">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The craftsmanship of the temple jewellery I purchased is beyond compare. The gold alone made my decision entirely, and the delivery was in immaculate standing."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ananya Singh</div>
+            <div class="testi-role">Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prim-group-label" style="font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px">Filter Panel Style</div>
+      <div class="filter-panel">
+        <div class="filter-title">Filter <span class="filter-reset">Reset All</span></div>
+        <div class="filter-group">
+          <div class="filter-group-name">Price Range</div>
+          <div class="filter-range">
+            <input type="range" min="0" max="500000" value="250000">
+            <div class="range-labels"><span>₹0</span><span>₹2,50,000</span><span>₹5,00,000</span></div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-name">Metal Type</div>
+          <label class="filter-checkbox"><input type="checkbox" checked> 22KT Yellow Gold</label>
+          <label class="filter-checkbox"><input type="checkbox"> 18KT Rose Gold</label>
+          <label class="filter-checkbox"><input type="checkbox"> Platinum</label>
+          <label class="filter-checkbox"><input type="checkbox"> Sterling Silver</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAYS -->
+<section class="ds-section fade-up">
+  <div class="ds-section-label">05 — Feedback</div>
+  <div class="ds-section-title">Overlays & Feedback</div>
+  <p class="ds-section-desc">Design patterns for information hierarchy and critical user notifications.</p>
+  <div class="overlays-grid">
+    <div>
+      <div class="prim-group-label" style="font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px">Alert States</div>
+      <div class="alert-card success">
+        <div class="alert-icon">✓</div>
+        <div>
+          <div class="alert-title">Authenticity Guaranteed</div>
+          <div class="alert-desc">Every piece is hallmarked and certified by the Bureau of Indian Standards. Certificate included with each order.</div>
+        </div>
+      </div>
+      <div class="alert-card warning">
+        <div class="alert-icon">◎</div>
+        <div>
+          <div class="alert-title">Low Stock Alert</div>
+          <div class="alert-desc">Only 2 units remaining. Place your order soon or add to wishlist for notifications.</div>
+        </div>
+      </div>
+      <div class="alert-card info">
+        <div class="alert-icon">✦</div>
+        <div>
+          <div class="alert-title">Chit Plan Active</div>
+          <div class="alert-desc">You're saving monthly with the 10+1 plan. Month 7 of 11 complete.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="prim-group-label" style="font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:16px">Quick View Modal</div>
+      <div class="quick-view-demo">
+        <div class="qv-header">
+          <span>Purchase</span>
+          <button class="qv-close">✕</button>
+        </div>
+        <div class="qv-body">
+          <div class="qv-img">
+            <svg width="80" height="110" viewBox="0 0 260 320" fill="none">
+              <path d="M60 270 Q60 180 130 180 Q200 180 200 270" stroke="#e8c97a" stroke-width="18" fill="none" stroke-linecap="round"/>
+              <polygon points="130,100 155,140 130,175 105,140" fill="#e8f0ff" opacity=".9"/>
+              <polygon points="130,100 155,140 130,135" fill="white" opacity=".7"/>
+            </svg>
+          </div>
+          <div class="qv-info">
+            <div class="qv-badge">Purchase</div>
+            <div class="qv-title">Royal Pearl Drops</div>
+            <div class="qv-price">₹11,499</div>
+            <div class="qv-sizes">
+              <div class="qv-size">S</div>
+              <div class="qv-size active">M</div>
+              <div class="qv-size">L</div>
+            </div>
+            <button class="qv-btn">Add to Bag</button>
+            <div style="text-align:center;margin-top:10px;font-size:10px;color:var(--brown-muted);cursor:pointer">View Details</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="ds-cta">
+  <div class="ds-cta-inner">
+    <div class="ds-cta-ornament">◇</div>
+    <h2>Crafting Digital Elegance for the<br><em>Modern Connoisseur</em></h2>
+    <p class="ds-cta-sub">A living design language refined for TRILOK's luxury digital identity.</p>
+    <button class="btn-white">Browse Collections</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-brand-logo">TRILOK</span>
+      <span class="footer-tagline">— Om Sri Jewel</span>
+      <p class="footer-desc">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern skill and innovation.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">tw</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Collections</p>
+      <ul class="footer-links">
+        <li><a href="#">Bridal Heritage</a></li>
+        <li><a href="#">Everyday Elegance</a></li>
+        <li><a href="#">Temple Jewellery</a></li>
+        <li><a href="#">Modern Minimalism</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Customer Care</p>
+      <ul class="footer-links">
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Store Locator</a></li>
+        <li><a href="#">Gold Rate Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Join The Inner Circle</p>
+      <p style="font-size:12px;color:#9a7060;font-weight:300;margin-bottom:14px;line-height:1.7">Receive updates on new collections and exclusive events.</p>
+      <div style="display:flex">
+        <input type="email" placeholder="Email Address" style="flex:1;padding:11px 14px;border:1px solid rgba(115,64,42,.2);background:var(--white);font-family:'Jost',sans-serif;font-size:12px;outline:none">
+        <button style="background:var(--brown);color:var(--white);border:none;padding:11px 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 Trilok — Om Sri Jewel. All Rights Reserved.</span>
+    <ul class="footer-bottom-links">
+      <li><a href="#">BIS Hallmark</a></li>
+      <li><a href="#">Lifetime Exchange</a></li>
+      <li><a href="#">Secure Payment</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.fade-up').forEach(el => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold: 0.1});
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

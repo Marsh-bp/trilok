@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethereal Brilliance Diamond Solitaire Ring — Trilok · Om Sri Jewel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #73402a;
+  --brown-light: #9a5a3c;
+  --brown-dark: #4e2b1a;
+  --brown-muted: #b5815f;
+  --cream: #fdf8f4;
+  --cream-dark: #f5ede3;
+  --white: #ffffff;
+  --gold: #c9a96e;
+  --gold-light: #f0d890;
+  --text-dark: #2a1a10;
+  --text-mid: #5c3d27;
+  --border: rgba(115,64,42,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;}
+
+/* ── ANNOUNCE ── */
+.announce-bar{background:var(--brown);color:var(--white);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300;}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 60px;display:flex;align-items:center;justify-content:space-between;
+  height:70px;transition:box-shadow 0.3s;
+}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text-dark);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;position:relative;padding-bottom:3px;transition:color 0.3s;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown);transition:width 0.3s;}
+.nav-links a:hover{color:var(--brown);}
+.nav-links a:hover::after{width:100%;}
+.nav-chevron{font-size:8px;opacity:0.5;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--brown);letter-spacing:5px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-diamond{color:var(--gold);font-size:14px;}
+.nav-actions{display:flex;align-items:center;gap:20px;}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--text-dark);stroke-width:1.5;transition:color 0.2s;}
+.nav-icon:hover{color:var(--brown);}
+.cart-wrap{position:relative;}
+.cart-count{position:absolute;top:-6px;right:-7px;width:16px;height:16px;background:var(--brown);color:var(--white);font-size:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.nav-search{display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:7px 14px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1px;color:#aaa;cursor:pointer;transition:border-color 0.3s;width:160px;}
+.nav-search:hover{border-color:var(--brown-muted);}
+
+/* ── BREADCRUMB ── */
+.breadcrumb-wrap{padding:14px 60px;border-bottom:1px solid var(--border);}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-muted);}
+.breadcrumb a{color:var(--brown-muted);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--brown);}
+.breadcrumb-sep{font-size:9px;opacity:0.5;}
+.breadcrumb .current{color:var(--text-dark);}
+
+/* ── PRODUCT LAYOUT ── */
+.product-layout{
+  display:grid;grid-template-columns:80px 1fr 480px;
+  gap:0;padding:0;
+  max-width:1400px;margin:0 auto;
+}
+
+/* ── THUMBNAIL RAIL ── */
+.thumb-rail{
+  padding:28px 0 28px 28px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.thumb{
+  width:68px;height:68px;
+  border:1.5px solid transparent;
+  cursor:pointer;overflow:hidden;
+  transition:border-color 0.2s;
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.thumb:hover,.thumb.active{border-color:var(--brown);}
+.thumb svg{width:40px;height:40px;}
+.thumb-label{
+  width:68px;height:68px;
+  border:1.5px solid var(--border);
+  cursor:pointer;background:var(--cream-dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown);
+  transition:all 0.2s;
+}
+.thumb-label:hover{background:var(--brown);color:var(--white);}
+.thumb-label svg{width:16px;height:16px;}
+
+/* ── MAIN GALLERY ── */
+.main-gallery{
+  position:relative;
+  background:linear-gradient(160deg,#1a0d08 0%,#0d0502 60%,#1a0a06 100%);
+  aspect-ratio:unset;
+  min-height:580px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.gallery-ring{
+  position:relative;z-index:2;
+  animation:floatRing 5s ease-in-out infinite;
+}
+@keyframes floatRing{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+.gallery-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 60%,rgba(201,169,110,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.gallery-badge{
+  position:absolute;top:22px;left:22px;
+  background:var(--brown);color:var(--white);
+  font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;padding:6px 12px;
+  z-index:5;
+}
+
+/* View Mode Buttons */
+.gallery-modes{
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:5;
+}
+.mode-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 18px;font-family:'Jost',sans-serif;
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);
+  color:rgba(255,255,255,0.7);cursor:pointer;transition:all 0.3s;
+}
+.mode-btn.active,.mode-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.mode-btn svg{width:12px;height:12px;}
+
+/* ── RIGHT PANEL ── */
+.product-panel{
+  padding:36px 48px 36px 40px;
+  border-left:1px solid var(--border);
+  overflow-y:auto;
+  max-height:calc(100vh - 70px);
+}
+.product-panel::-webkit-scrollbar{width:4px;}
+.product-panel::-webkit-scrollbar-thumb{background:var(--border);}
+
+.panel-top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.product-badge-tag{background:var(--brown);color:var(--white);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;}
+
+.panel-actions{display:flex;align-items:center;gap:10px;}
+.panel-icon-btn{
+  width:34px;height:34px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--brown-muted);transition:all 0.2s;
+}
+.panel-icon-btn:hover{border-color:var(--brown);color:var(--brown);}
+.panel-icon-btn svg{width:15px;height:15px;}
+
+.product-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:400;line-height:1.15;
+  color:var(--text-dark);margin-bottom:8px;
+}
+
+.product-sku{font-size:10px;letter-spacing:2px;color:var(--brown-muted);text-transform:uppercase;margin-bottom:14px;}
+
+.product-rating-row{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:24px;padding-bottom:24px;
+  border-bottom:1px solid var(--border);
+}
+.rating-stars{color:var(--gold);font-size:12px;letter-spacing:1px;}
+.rating-score{font-size:13px;font-weight:500;color:var(--text-dark);}
+.rating-count{font-size:12px;color:var(--brown-muted);text-decoration:underline;cursor:pointer;}
+
+/* Price */
+.price-block{
+  background:var(--cream);border:1px solid var(--border);
+  padding:20px 22px;margin-bottom:20px;
+}
+.price-main{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;font-weight:500;color:var(--text-dark);
+  display:flex;align-items:baseline;gap:12px;margin-bottom:6px;
+}
+.price-old{font-size:18px;color:#b5a090;text-decoration:line-through;font-family:'Jost',sans-serif;font-weight:300;}
+.price-inc{font-size:11px;color:var(--brown-muted);font-weight:300;letter-spacing:0.3px;}
+.price-gold-note{
+  display:flex;align-items:center;gap:8px;
+  margin-top:12px;padding-top:12px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--text-mid);font-weight:300;
+}
+.price-gold-note svg{width:14px;height:14px;color:var(--gold);flex-shrink:0;}
+
+/* EMI */
+.emi-strip{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border:1px solid var(--border);
+  margin-bottom:24px;font-size:12px;
+}
+.emi-left{display:flex;align-items:center;gap:8px;color:var(--text-mid);}
+.emi-left svg{width:15px;height:15px;color:var(--brown);}
+.emi-view{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown);cursor:pointer;text-decoration:underline;}
+
+/* Selectors */
+.selector-section{margin-bottom:20px;}
+.selector-label{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--text-dark);margin-bottom:12px;
+}
+.selector-link{font-size:10px;letter-spacing:1.5px;color:var(--brown);cursor:pointer;text-decoration:underline;text-transform:none;}
+
+.purity-grid{display:flex;gap:8px;}
+.purity-chip{
+  flex:1;padding:11px 8px;text-align:center;
+  border:1.5px solid var(--border);
+  font-size:11.5px;font-weight:400;color:var(--text-mid);
+  cursor:pointer;transition:all 0.2s;
+}
+.purity-chip:hover{border-color:var(--brown);color:var(--brown);}
+.purity-chip.active{background:var(--brown);color:var(--white);border-color:var(--brown);}
+
+.size-grid{display:flex;gap:7px;flex-wrap:wrap;}
+.size-chip{
+  width:44px;height:44px;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12.5px;cursor:pointer;transition:all 0.2s;
+  color:var(--text-mid);
+}
+.size-chip:hover{border-color:var(--brown);color:var(--brown);}
+.size-chip.active{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.size-chip.unavailable{opacity:0.3;cursor:not-allowed;}
+
+/* CTAs */
+.cta-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.btn-add-cart{
+  width:100%;padding:16px;
+  background:transparent;color:var(--brown);
+  border:1.5px solid var(--brown);
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.btn-add-cart:hover{background:var(--brown);color:var(--white);}
+.btn-add-cart svg{width:16px;height:16px;}
+.btn-buy-now{
+  width:100%;padding:16px;
+  background:var(--brown);color:var(--white);
+  border:none;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;
+}
+.btn-buy-now:hover{background:var(--brown-dark);}
+
+/* Delivery */
+.delivery-section{
+  border:1px solid var(--border);padding:18px 18px 16px;
+  margin-bottom:24px;
+}
+.delivery-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dark);margin-bottom:14px;}
+.pincode-row{display:flex;gap:0;}
+.pincode-input{
+  flex:1;padding:10px 14px;
+  border:1px solid var(--border);border-right:none;
+  font-family:'Jost',sans-serif;font-size:12px;
+  background:var(--white);outline:none;color:var(--text-dark);
+}
+.pincode-input::placeholder{color:#c4a48a;}
+.pincode-btn{
+  background:var(--brown);color:var(--white);
+  border:none;padding:0 18px;
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:background 0.3s;white-space:nowrap;
+}
+.pincode-btn:hover{background:var(--brown-dark);}
+.delivery-note{font-size:11.5px;color:var(--brown-muted);font-weight:300;margin-top:10px;}
+
+/* Trust Badges */
+.trust-row{display:flex;gap:0;border:1px solid var(--border);}
+.trust-item{
+  flex:1;padding:16px 10px;text-align:center;
+  border-right:1px solid var(--border);
+  font-size:9.5px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text-mid);
+}
+.trust-item:last-child{border-right:none;}
+.trust-item svg{width:18px;height:18px;color:var(--gold);display:block;margin:0 auto 6px;}
+
+/* ── TABS SECTION ── */
+.tabs-section{
+  border-top:1px solid var(--border);
+  padding:0 60px;
+  max-width:1400px;margin:0 auto;
+}
+.tabs-header{
+  display:flex;gap:0;border-bottom:1px solid var(--border);
+}
+.tab-btn{
+  padding:20px 28px;
+  font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--brown-muted);cursor:pointer;
+  background:none;border:none;border-bottom:2px solid transparent;
+  font-family:'Jost',sans-serif;transition:all 0.2s;
+  margin-bottom:-1px;
+}
+.tab-btn.active{color:var(--text-dark);border-bottom-color:var(--brown);}
+.tab-btn:hover{color:var(--brown);}
+
+.tab-panel{display:none;padding:56px 0;}
+.tab-panel.active{display:block;}
+
+/* Description tab */
+.desc-layout{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:start;}
+.desc-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;line-height:1.1;margin-bottom:20px;color:var(--text-dark);}
+.desc-title em{font-style:italic;color:var(--brown);}
+.desc-body{font-size:13.5px;color:var(--text-mid);font-weight:300;line-height:1.9;margin-bottom:28px;}
+.desc-features{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.desc-features li{
+  display:flex;align-items:center;gap:12px;
+  font-size:13px;color:var(--text-mid);font-weight:300;
+}
+.desc-features li::before{content:'◆';color:var(--gold);font-size:8px;flex-shrink:0;}
+
+.desc-img-wrap{
+  background:linear-gradient(160deg,#1a0d08,#0a0302);
+  aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.desc-img-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 40% 50%,rgba(201,169,110,0.15) 0%,transparent 60%);
+}
+
+/* Specs tab */
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.spec-row{
+  display:flex;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.spec-key{font-size:12px;letter-spacing:1px;color:var(--brown-muted);text-transform:uppercase;}
+.spec-val{font-size:13px;color:var(--text-dark);font-weight:400;}
+.specs-col{padding:0 40px 0 0;}
+.specs-col:last-child{padding:0 0 0 40px;border-left:1px solid var(--border);}
+
+/* Reviews tab */
+.reviews-summary{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);
+}
+.reviews-score{text-align:center;padding:32px 24px;background:var(--cream);border:1px solid var(--border);}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:400;color:var(--brown);line-height:1;}
+.score-stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin:8px 0;}
+.score-count{font-size:11.5px;color:var(--brown-muted);font-weight:300;}
+.bars-list{display:flex;flex-direction:column;gap:10px;justify-content:center;}
+.bar-row{display:flex;align-items:center;gap:14px;}
+.bar-label{font-size:11.5px;color:var(--text-mid);width:40px;}
+.bar-track{flex:1;height:6px;background:var(--cream-dark);position:relative;}
+.bar-fill{height:100%;background:var(--gold);}
+.bar-count{font-size:11.5px;color:var(--brown-muted);width:30px;text-align:right;}
+
+.review-card{padding:28px 0;border-bottom:1px solid var(--border);}
+.review-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.reviewer-name{font-size:13.5px;font-weight:500;color:var(--text-dark);}
+.review-date{font-size:11px;color:var(--brown-muted);}
+.review-stars{color:var(--gold);font-size:11px;margin-bottom:10px;letter-spacing:1px;}
+.review-text{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.8;}
+.review-verified{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#2a7a2a;
+  margin-top:10px;
+}
+.review-verified::before{content:'✓';font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{
+  background:var(--cream);padding:80px 60px;
+  max-width:1400px;margin:0 auto;
+}
+.faq-header{text-align:center;margin-bottom:48px;}
+.faq-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:12px;}
+.faq-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;font-style:italic;color:var(--text-dark);}
+.faq-sub{font-size:13px;color:var(--text-mid);font-weight:300;margin-top:10px;}
+.faq-list{max-width:700px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-question{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0;cursor:pointer;
+  font-size:14px;color:var(--text-dark);font-weight:400;
+  user-select:none;transition:color 0.2s;
+}
+.faq-question:hover{color:var(--brown);}
+.faq-arrow{
+  width:18px;height:18px;color:var(--brown-muted);
+  transition:transform 0.3s;flex-shrink:0;
+}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease,padding 0.3s;
+  font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.85;
+}
+.faq-item.open .faq-answer{max-height:200px;padding-bottom:18px;}
+
+/* ── COMPLETE THE LOOK ── */
+.look-section{padding:80px 60px;max-width:1400px;margin:0 auto;}
+.look-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:12px;}
+.look-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;color:var(--text-dark);}
+.look-explore{
+  display:flex;align-items:center;gap:6px;
+  font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown);cursor:pointer;
+  text-decoration:none;
+}
+.look-sub{font-size:13px;color:var(--text-mid);font-weight:300;margin-bottom:40px;}
+.look-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+
+.look-card{cursor:pointer;transition:all 0.3s;}
+.look-card:hover{transform:translateY(-4px);}
+.look-img{
+  aspect-ratio:1/1.1;
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin-bottom:14px;
+  position:relative;
+}
+.look-img-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.5s;
+}
+.look-card:hover .look-img-inner{transform:scale(1.04);}
+.look-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--text-dark);margin-bottom:4px;}
+.look-price{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--brown);}
+
+/* ── RECENTLY VIEWED ── */
+.recent-section{
+  padding:32px 60px 60px;
+  border-top:1px solid var(--border);
+  max-width:1400px;margin:0 auto;
+}
+.recent-title{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--brown-muted);margin-bottom:20px;}
+.recent-grid{display:flex;gap:16px;}
+.recent-card{
+  width:120px;cursor:pointer;
+  transition:opacity 0.2s;
+}
+.recent-card:hover{opacity:0.75;}
+.recent-img{
+  width:120px;height:90px;
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:8px;border:1px solid var(--border);
+}
+.recent-name{font-size:10px;letter-spacing:0.5px;color:var(--text-mid);margin-bottom:3px;line-height:1.3;}
+.recent-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--brown);}
+
+/* ── FOOTER ── */
+footer{background:var(--cream-dark);border-top:1px solid var(--border);padding:64px 80px 32px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:60px;margin-bottom:52px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--brown);letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.footer-tagline{font-size:12.5px;color:var(--text-mid);font-weight:300;line-height:1.8;max-width:260px;margin-bottom:24px;}
+.footer-social{display:flex;gap:14px;}
+.social-btn{width:34px;height:34px;border:1px solid rgba(115,64,42,0.25);display:flex;align-items:center;justify-content:center;color:var(--brown);cursor:pointer;transition:all 0.3s;text-decoration:none;}
+.social-btn:hover{background:var(--brown);color:var(--white);}
+.social-btn svg{width:15px;height:15px;}
+.footer-col-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dark);margin-bottom:20px;font-weight:500;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.footer-links a{text-decoration:none;font-size:12.5px;color:var(--text-mid);font-weight:300;transition:color 0.2s;}
+.footer-links a:hover{color:var(--brown);}
+.footer-newsletter-text{font-size:12.5px;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:18px;}
+.newsletter-form{display:flex;}
+.newsletter-input{flex:1;padding:11px 14px;border:1px solid rgba(115,64,42,0.2);border-right:none;font-family:'Jost',sans-serif;font-size:11.5px;background:var(--white);outline:none;color:var(--text-dark);}
+.newsletter-input::placeholder{color:#c4a48a;}
+.newsletter-btn{background:var(--brown);color:var(--white);border:none;padding:0 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
+.newsletter-btn:hover{background:var(--brown-dark);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid var(--border);}
+.footer-trust-row{display:flex;align-items:center;gap:28px;}
+.f-trust-item{display:flex;align-items:center;gap:8px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);}
+.f-trust-item svg{width:14px;height:14px;color:var(--gold);}
+.footer-copy{font-size:10.5px;color:var(--brown-muted);font-weight:300;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp 0.5s ease forwards;}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">Free Shipping on All Orders &nbsp;·&nbsp; BIS Hallmarked Certified Gold &nbsp;·&nbsp; Lifetime Exchange</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div style="display:flex;align-items:center;gap:0;">
+    <ul class="nav-links">
+      <li><a href="trilok-product-listing.html">Rings <span class="nav-chevron">▾</span></a></li>
+      <li><a href="trilok-product-listing.html">Earrings</a></li>
+      <li><a href="trilok-product-listing.html">Necklaces</a></li>
+      <li><a href="trilok-product-listing.html">Bangles</a></li>
+      <li><a href="trilok-product-listing.html">Bridal</a></li>
+      <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+    </ul>
+  </div>
+  <a class="nav-logo" href="trilok-jewellery (2).html"><span class="nav-logo-diamond">◆</span>Trilok &mdash; Om Sri Jewel</a>
+  <div class="nav-actions">
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:#aaa"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search...
+    </div>
+    <a href="trilok-cart.html" class="cart-wrap">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="cart-count">2</div>
+    </a>
+    <a href="login-signup.html">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <div class="breadcrumb">
+    <a href="#">Home</a><span class="breadcrumb-sep">›</span>
+    <a href="#">Rings</a><span class="breadcrumb-sep">›</span>
+    <span class="current">Solitaire Collection</span>
+  </div>
+</div>
+
+<!-- PRODUCT LAYOUT -->
+<div class="product-layout">
+
+  <!-- THUMBNAILS -->
+  <div class="thumb-rail">
+    <div class="thumb active">
+      <svg viewBox="0 0 80 80" fill="none">
+        <defs><radialGradient id="tg1" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient><radialGradient id="td1" cx="50%" cy="30%"><stop offset="0%" stop-color="#fff"/><stop offset="60%" stop-color="#d8eeff"/><stop offset="100%" stop-color="#90c4f8"/></radialGradient></defs>
+        <ellipse cx="40" cy="65" rx="26" ry="7" fill="url(#tg1)" opacity="0.9"/>
+        <rect x="14" y="36" width="52" height="29" rx="3" fill="url(#tg1)"/>
+        <ellipse cx="40" cy="36" rx="26" ry="7" fill="url(#tg1)"/>
+        <ellipse cx="40" cy="36" rx="17" ry="4" fill="#a0702e"/>
+        <circle cx="40" cy="24" r="16" fill="url(#tg1)" stroke="#c9a96e" stroke-width="1"/>
+        <circle cx="40" cy="24" r="10" fill="url(#td1)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+        <circle cx="40" cy="24" r="5" fill="rgba(255,255,255,0.4)"/>
+      </svg>
+    </div>
+    <div class="thumb">
+      <svg viewBox="0 0 80 80" fill="none">
+        <defs><radialGradient id="tg2" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs>
+        <ellipse cx="40" cy="60" rx="26" ry="7" fill="url(#tg2)" opacity="0.7"/>
+        <rect x="14" y="30" width="52" height="30" rx="3" fill="url(#tg2)" opacity="0.8"/>
+        <ellipse cx="40" cy="30" rx="26" ry="7" fill="url(#tg2)"/>
+        <line x1="20" y1="33" x2="18" y2="58" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="thumb">
+      <svg viewBox="0 0 80 80" fill="none">
+        <rect x="10" y="20" width="60" height="40" rx="4" fill="#1a1008"/>
+        <circle cx="40" cy="40" r="16" fill="#c9a96e" opacity="0.5"/>
+        <circle cx="40" cy="40" r="10" fill="rgba(200,180,140,0.8)"/>
+        <circle cx="40" cy="40" r="5" fill="rgba(255,240,200,0.6)"/>
+      </svg>
+    </div>
+    <div class="thumb-label" onclick="alert('360° View')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-6.219-8.56"/><polyline points="21 3 21 9 15 9"/></svg>
+      360°
+    </div>
+  </div>
+
+  <!-- MAIN GALLERY -->
+  <div class="main-gallery">
+    <div class="gallery-glow"></div>
+    <div class="gallery-badge">Solitaire</div>
+    <div class="gallery-ring">
+      <svg width="340" height="380" viewBox="0 0 340 380" fill="none">
+        <defs>
+          <radialGradient id="mg1" cx="38%" cy="32%">
+            <stop offset="0%" stop-color="#fff8e0"/>
+            <stop offset="35%" stop-color="#e8c870"/>
+            <stop offset="65%" stop-color="#c9a96e"/>
+            <stop offset="100%" stop-color="#6a3c10"/>
+          </radialGradient>
+          <radialGradient id="mgd" cx="35%" cy="28%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="20%" stop-color="#f0f8ff"/>
+            <stop offset="50%" stop-color="#c0dcff"/>
+            <stop offset="80%" stop-color="#6899cc"/>
+            <stop offset="100%" stop-color="#2255aa"/>
+          </radialGradient>
+          <radialGradient id="mgd2" cx="60%" cy="60%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.9)"/>
+            <stop offset="100%" stop-color="rgba(100,160,220,0.2)"/>
+          </radialGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="softglow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Ring band shadow -->
+        <ellipse cx="170" cy="345" rx="90" ry="14" fill="rgba(0,0,0,0.4)"/>
+        <!-- Lower band -->
+        <ellipse cx="170" cy="320" rx="88" ry="22" fill="url(#mg1)" opacity="0.95"/>
+        <rect x="82" y="180" width="176" height="140" rx="10" fill="url(#mg1)"/>
+        <ellipse cx="170" cy="180" rx="88" ry="22" fill="url(#mg1)"/>
+        <!-- Inner band shadow -->
+        <ellipse cx="170" cy="180" rx="58" ry="13" fill="#7a4a18"/>
+        <!-- Band highlight shine -->
+        <rect x="82" y="185" width="14" height="125" rx="7" fill="rgba(255,255,255,0.18)"/>
+        <!-- Setting prongs area -->
+        <circle cx="170" cy="130" r="70" fill="#8a5a20" opacity="0.25"/>
+        <circle cx="170" cy="130" r="62" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1.5"/>
+        <!-- Six prongs -->
+        <rect x="167" y="68" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1"/>
+        <rect x="167" y="172" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1"/>
+        <rect x="108" y="101" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1" transform="rotate(-60 111 111)"/>
+        <rect x="224" y="101" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1" transform="rotate(60 227 111)"/>
+        <rect x="108" y="139" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1" transform="rotate(60 111 149)"/>
+        <rect x="224" y="139" width="6" height="20" rx="3" fill="url(#mg1)" stroke="#d4a04a" stroke-width="1" transform="rotate(-60 227 149)"/>
+        <!-- Diamond facets -->
+        <circle cx="170" cy="128" r="52" fill="url(#mgd)" filter="url(#glow)"/>
+        <!-- Star facet pattern -->
+        <polygon points="170,76 178,110 214,110 186,130 196,164 170,144 144,164 154,130 126,110 162,110" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+        <polygon points="170,92 176,116 198,116 180,130 186,154 170,140 154,154 160,130 142,116 164,116" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+        <!-- Center highlight -->
+        <ellipse cx="158" cy="112" rx="18" ry="14" fill="rgba(255,255,255,0.45)"/>
+        <ellipse cx="155" cy="109" rx="8" ry="6" fill="rgba(255,255,255,0.7)"/>
+        <!-- Rainbow dispersion flares -->
+        <circle cx="192" cy="106" r="4" fill="rgba(255,180,180,0.5)"/>
+        <circle cx="148" cy="148" r="3" fill="rgba(180,210,255,0.6)"/>
+        <circle cx="196" cy="150" r="3" fill="rgba(180,255,200,0.5)"/>
+      </svg>
+    </div>
+    <div class="gallery-modes">
+      <button class="mode-btn active" onclick="setMode(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Photos
+      </button>
+      <button class="mode-btn" onclick="setMode(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-6.219-8.56"/><polyline points="21 3 21 9 15 9"/></svg>
+        360° View
+      </button>
+      <button class="mode-btn" onclick="window.location.href='trilok-ar-tryon (1).html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        AR Try-On
+      </button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="product-panel">
+    <div class="panel-top-row">
+      <div class="product-badge-tag">Solitaire</div>
+      <div class="panel-actions">
+        <button class="panel-icon-btn" title="Share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+        <button class="panel-icon-btn" id="wishlist-btn" title="Wishlist" onclick="toggleWishlist()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <h1 class="product-title">Ethereal Brilliance Diamond Solitaire Ring</h1>
+    <div class="product-sku">SKU: TR-RNG-0021-GLD</div>
+
+    <div class="product-rating-row">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-score">4.8</span>
+      <span class="rating-count">174 Verified Reviews</span>
+    </div>
+
+    <!-- PRICE -->
+    <div class="price-block">
+      <div class="price-main">
+        ₹1,42,999
+        <span class="price-old">₹1,65,000</span>
+      </div>
+      <div class="price-inc">Price inclusive of all taxes. Gold Price: ₹7,450/g (24k)</div>
+      <div class="price-gold-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Price may vary based on daily gold rate at the time of purchase.
+      </div>
+    </div>
+
+    <!-- EMI -->
+    <div class="emi-strip">
+      <div class="emi-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        No Cost EMI available &nbsp;·&nbsp; Starting from ₹11,916/month
+      </div>
+      <span class="emi-view" onclick="alert('View Plans')">View Plans</span>
+    </div>
+
+    <!-- PURITY -->
+    <div class="selector-section">
+      <div class="selector-label">
+        Select Purity
+        <a class="selector-link" href="#">What is Purity?</a>
+      </div>
+      <div class="purity-grid">
+        <div class="purity-chip" onclick="selectPurity(this)">14kt</div>
+        <div class="purity-chip active" onclick="selectPurity(this)">18kt</div>
+        <div class="purity-chip" onclick="selectPurity(this)">22kt</div>
+      </div>
+    </div>
+
+    <!-- SIZE -->
+    <div class="selector-section">
+      <div class="selector-label">
+        Select Size (Indian)
+        <a class="selector-link" href="#">Size Guide</a>
+      </div>
+      <div class="size-grid">
+        <div class="size-chip" onclick="selectSize(this)">10</div>
+        <div class="size-chip" onclick="selectSize(this)">12</div>
+        <div class="size-chip active" onclick="selectSize(this)">14</div>
+        <div class="size-chip" onclick="selectSize(this)">16</div>
+        <div class="size-chip" onclick="selectSize(this)">18</div>
+        <div class="size-chip unavailable">20</div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-stack">
+      <button class="btn-add-cart" onclick="addToCart(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Add to Cart
+      </button>
+      <button class="btn-buy-now">Buy Now</button>
+    </div>
+
+    <!-- DELIVERY -->
+    <div class="delivery-section">
+      <div class="delivery-title">Delivery Options</div>
+      <div class="pincode-row">
+        <input class="pincode-input" type="text" placeholder="Enter Pincode" maxlength="6">
+        <button class="pincode-btn">Check</button>
+      </div>
+      <div class="delivery-note" id="delivery-note">Expected delivery on Friday, Dec 27th</div>
+    </div>
+
+    <!-- TRUST -->
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Lifetime Warranty
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="m16 8 6 2v7h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Insured Shipping
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        30-Day Returns
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-section">
+  <div class="tabs-header">
+    <button class="tab-btn active" onclick="switchTab('desc',this)">Product Description</button>
+    <button class="tab-btn" onclick="switchTab('specs',this)">Specifications</button>
+    <button class="tab-btn" onclick="switchTab('reviews',this)">Customer Reviews</button>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="tab-panel active" id="tab-desc">
+    <div class="desc-layout">
+      <div>
+        <h2 class="desc-title">Timeless Artistry<br><em>Meets Precision</em></h2>
+        <p class="desc-body">Inspired by the celestial bodies, the Ethereal Brilliance solitaire ring features a stunning half-carat diamond cradled in a unique six-prong cathedral setting. Hand-forged in Trilok's signature high-purity gold, this piece is designed for those who appreciate the quiet luxury of minimalist design.</p>
+        <ul class="desc-features">
+          <li>Handcrafted by master artisans with over 20 years of experience</li>
+          <li>Conflict-free diamonds certified by GIA and IGI labs</li>
+          <li>Ergonomic comfort-fit band designed for daily wear</li>
+          <li>Comes in a signature Trilok velvet gift box</li>
+          <li>Available for custom engraving at no extra charge</li>
+        </ul>
+      </div>
+      <div class="desc-img-wrap">
+        <svg width="100%" height="100%" viewBox="0 0 420 320" fill="none" style="position:relative;z-index:1;">
+          <defs>
+            <radialGradient id="di1" cx="38%" cy="32%">
+              <stop offset="0%" stop-color="#fff8e0"/>
+              <stop offset="40%" stop-color="#d4a04a"/>
+              <stop offset="80%" stop-color="#9a6020"/>
+              <stop offset="100%" stop-color="#4a2808"/>
+            </radialGradient>
+          </defs>
+          <!-- Stylized close-up band with engraving -->
+          <rect x="0" y="80" width="420" height="160" rx="80" fill="url(#di1)"/>
+          <!-- Engraving lines -->
+          <path d="M60 130 Q80 110 100 130 Q120 150 140 130 Q160 110 180 130 Q200 150 220 130 Q240 110 260 130 Q280 150 300 130 Q320 110 340 130 Q360 150 380 130" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none"/>
+          <path d="M60 160 Q80 140 100 160 Q120 180 140 160 Q160 140 180 160 Q200 180 220 160 Q240 140 260 160 Q280 180 300 160 Q320 140 340 160 Q360 180 380 160" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none"/>
+          <!-- Shine -->
+          <ellipse cx="100" cy="140" rx="30" ry="50" fill="rgba(255,255,255,0.15)" transform="rotate(-20 100 140)"/>
+          <ellipse cx="90" cy="135" rx="12" ry="20" fill="rgba(255,255,255,0.25)" transform="rotate(-20 90 135)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIFICATIONS -->
+  <div class="tab-panel" id="tab-specs">
+    <div class="specs-grid">
+      <div class="specs-col">
+        <div class="spec-row"><span class="spec-key">Metal</span><span class="spec-val">18kt Yellow Gold</span></div>
+        <div class="spec-row"><span class="spec-key">Diamond Carat</span><span class="spec-val">0.50 ct (Half Carat)</span></div>
+        <div class="spec-row"><span class="spec-key">Diamond Cut</span><span class="spec-val">Excellent Round Brilliant</span></div>
+        <div class="spec-row"><span class="spec-key">Diamond Clarity</span><span class="spec-val">VVS1 – VS2</span></div>
+        <div class="spec-row"><span class="spec-key">Diamond Color</span><span class="spec-val">D–F (Colorless)</span></div>
+        <div class="spec-row"><span class="spec-key">Certification</span><span class="spec-val">GIA / IGI Certified</span></div>
+      </div>
+      <div class="specs-col">
+        <div class="spec-row"><span class="spec-key">Setting Style</span><span class="spec-val">Cathedral Six-Prong Solitaire</span></div>
+        <div class="spec-row"><span class="spec-key">Band Width</span><span class="spec-val">2.0 mm</span></div>
+        <div class="spec-row"><span class="spec-key">Metal Weight</span><span class="spec-val">~3.2 grams</span></div>
+        <div class="spec-row"><span class="spec-key">Available Sizes</span><span class="spec-val">10, 12, 14, 16, 18 (Indian)</span></div>
+        <div class="spec-row"><span class="spec-key">Hallmark</span><span class="spec-val">BIS 916 Certified</span></div>
+        <div class="spec-row"><span class="spec-key">SKU</span><span class="spec-val">TR-RNG-0021-GLD</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="tab-panel" id="tab-reviews">
+    <div class="reviews-summary">
+      <div class="reviews-score">
+        <div class="score-num">4.8</div>
+        <div class="score-stars">★★★★★</div>
+        <div class="score-count">174 Reviews</div>
+      </div>
+      <div class="bars-list">
+        <div class="bar-row"><span class="bar-label">5 ★</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span class="bar-count">126</span></div>
+        <div class="bar-row"><span class="bar-label">4 ★</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-count">31</span></div>
+        <div class="bar-row"><span class="bar-label">3 ★</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="bar-count">11</span></div>
+        <div class="bar-row"><span class="bar-label">2 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-count">4</span></div>
+        <div class="bar-row"><span class="bar-label">1 ★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-count">2</span></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><span class="reviewer-name">Priya Menon</span><span class="review-date">December 2024</span></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Absolutely stunning ring. The diamond catches light beautifully and the craftsmanship is impeccable. Got it as an engagement ring and my partner was speechless. Trilok's quality is unmatched — will definitely be back for more.</p>
+      <span class="review-verified">Verified Purchase</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><span class="reviewer-name">Arjun Kapoor</span><span class="review-date">November 2024</span></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">The packaging itself is exquisite. The ring exceeded my expectations — the gold has a beautiful warm tone and the stone is crystal clear. Delivered ahead of schedule and came with a GIA certificate.</p>
+      <span class="review-verified">Verified Purchase</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><span class="reviewer-name">Sneha Iyer</span><span class="review-date">October 2024</span></div>
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">Very beautiful piece. Slightly smaller than I imagined from the photos, but the quality is outstanding. Customer support was responsive and helped me with sizing. Four stars only because I wished the band was a touch wider.</p>
+      <span class="review-verified">Verified Purchase</span>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-header">
+    <div class="faq-tag">Still Curious?</div>
+    <h2 class="faq-title">Still curious?</h2>
+    <p class="faq-sub">Common questions about the Ethereal Collection</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How do I verify the gold authenticity?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-answer">Every Trilok piece carries a BIS Hallmark certification confirming metal purity. Additionally, you'll receive a quality assurance card and independent certification. You can also get any piece tested at a certified assay centre — we actively encourage this.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Is it safe to order luxury jewellery online?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-answer">Absolutely. All orders are fully insured during transit, shipped in tamper-evident packaging, and require signature upon delivery. We partner only with premium logistics providers and offer a 30-day return policy with no questions asked.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Can I customise the metal colour?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-answer">Yes — this design is available in Yellow Gold, Rose Gold, White Gold, and Platinum. Select your preferred purity and metal using the options above, or reach out to our concierge team for bespoke customisation requests including engraving and stone upgrades.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETE THE LOOK -->
+<div class="look-section">
+  <div class="look-header">
+    <h2 class="look-title">Complete the Look</h2>
+    <a class="look-explore" href="#">Explore More &nbsp;›</a>
+  </div>
+  <p class="look-sub">Curated pieces that complement your selection</p>
+  <div class="look-grid">
+    <!-- Look 1 -->
+    <div class="look-card">
+      <div class="look-img" style="background:linear-gradient(145deg,#f5e8d8,#e8d0b0);">
+        <div class="look-img-inner">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+            <defs><radialGradient id="lg1" cx="40%" cy="35%"><stop offset="0%" stop-color="#fff0c0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs>
+            <ellipse cx="55" cy="90" rx="36" ry="9" fill="url(#lg1)" opacity="0.9"/>
+            <rect x="19" y="50" width="72" height="40" rx="5" fill="url(#lg1)"/>
+            <ellipse cx="55" cy="50" rx="36" ry="9" fill="url(#lg1)"/>
+            <ellipse cx="55" cy="50" rx="24" ry="5.5" fill="#8a5a18"/>
+            <circle cx="55" cy="32" r="24" fill="url(#lg1)" stroke="#d4a04a" stroke-width="1.5"/>
+            <circle cx="55" cy="32" r="14" fill="#f0d890" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <circle cx="48" cy="27" r="4" fill="rgba(255,255,255,0.5)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="look-name">Colossal Halo Band</div>
+      <div class="look-price">₹85,000</div>
+    </div>
+    <!-- Look 2 -->
+    <div class="look-card">
+      <div class="look-img" style="background:linear-gradient(145deg,#1a0d08,#0a0302);">
+        <div class="look-img-inner">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+            <defs><radialGradient id="lg2" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#6a3c10"/></radialGradient><radialGradient id="ldiam" cx="50%" cy="30%"><stop offset="0%" stop-color="#fff"/><stop offset="60%" stop-color="#cce0ff"/><stop offset="100%" stop-color="#88b8f0"/></radialGradient></defs>
+            <ellipse cx="55" cy="88" rx="34" ry="8" fill="url(#lg2)" opacity="0.9"/>
+            <rect x="21" y="52" width="68" height="36" rx="4" fill="url(#lg2)"/>
+            <ellipse cx="55" cy="52" rx="34" ry="8" fill="url(#lg2)"/>
+            <ellipse cx="55" cy="52" rx="22" ry="5" fill="#8a5a18"/>
+            <!-- Vintage marquise shape -->
+            <path d="M55 28 Q76 45 55 72 Q34 45 55 28Z" fill="url(#ldiam)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+          </svg>
+        </div>
+      </div>
+      <div class="look-name">Royal Vintage Marquise</div>
+      <div class="look-price">₹2,10,500</div>
+    </div>
+    <!-- Look 3 -->
+    <div class="look-card">
+      <div class="look-img" style="background:var(--cream);">
+        <div class="look-img-inner">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+            <defs><linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8f8f0"/><stop offset="50%" stop-color="#d4d4c0"/><stop offset="100%" stop-color="#a0a080"/></linearGradient><radialGradient id="ld3" cx="50%" cy="30%"><stop offset="0%" stop-color="#fff"/><stop offset="60%" stop-color="#d8eeff"/><stop offset="100%" stop-color="#90b8e0"/></radialGradient></defs>
+            <ellipse cx="55" cy="88" rx="34" ry="8" fill="url(#lg3)"/>
+            <rect x="21" y="52" width="68" height="36" rx="4" fill="url(#lg3)"/>
+            <ellipse cx="55" cy="52" rx="34" ry="8" fill="url(#lg3)"/>
+            <ellipse cx="55" cy="70" rx="34" ry="6" fill="url(#lg3)" opacity="0.6"/>
+            <!-- Infinity twist -->
+            <path d="M30 55 Q42 44 55 55 Q68 66 80 55 Q68 44 55 55 Q42 66 30 55Z" fill="none" stroke="url(#ld3)" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="look-name">Minimalist Gold Infinity</div>
+      <div class="look-price">₹42,000</div>
+    </div>
+    <!-- Look 4 -->
+    <div class="look-card">
+      <div class="look-img" style="background:var(--cream-dark);">
+        <div class="look-img-inner">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+            <defs><radialGradient id="lg4" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#6a3c10"/></radialGradient><radialGradient id="ls4" cx="40%" cy="30%"><stop offset="0%" stop-color="#a0c0ff"/><stop offset="60%" stop-color="#2244cc"/><stop offset="100%" stop-color="#001066"/></radialGradient></defs>
+            <ellipse cx="55" cy="88" rx="34" ry="8" fill="url(#lg4)" opacity="0.9"/>
+            <rect x="21" y="52" width="68" height="36" rx="4" fill="url(#lg4)"/>
+            <ellipse cx="55" cy="52" rx="34" ry="8" fill="url(#lg4)"/>
+            <ellipse cx="55" cy="52" rx="22" ry="5" fill="#8a5a18"/>
+            <circle cx="55" cy="30" r="20" fill="url(#lg4)" stroke="#d4a04a" stroke-width="1.5"/>
+            <ellipse cx="55" cy="30" rx="13" ry="16" fill="url(#ls4)" stroke="rgba(150,180,255,0.4)" stroke-width="1"/>
+            <ellipse cx="52" cy="26" rx="5" ry="7" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="look-name">Oceanic Blue Sapphire</div>
+      <div class="look-price">₹1,15,999</div>
+    </div>
+  </div>
+</div>
+
+<!-- RECENTLY VIEWED -->
+<div class="recent-section">
+  <div class="recent-title">Recently Viewed</div>
+  <div class="recent-grid">
+    <div class="recent-card">
+      <div class="recent-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <defs><radialGradient id="rg1" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs>
+          <ellipse cx="30" cy="50" rx="20" ry="5" fill="url(#rg1)" opacity="0.8"/>
+          <rect x="10" y="28" width="40" height="22" rx="3" fill="url(#rg1)"/>
+          <ellipse cx="30" cy="28" rx="20" ry="5" fill="url(#rg1)"/>
+          <circle cx="30" cy="18" r="12" fill="url(#rg1)" stroke="#c9a96e" stroke-width="1"/>
+          <circle cx="30" cy="18" r="7" fill="#f0d890" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="recent-name">Celestial Halo Ring</div>
+      <div class="recent-price">₹1,62,000</div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <defs><radialGradient id="rg2" cx="40%" cy="35%"><stop offset="0%" stop-color="#ffe8a0"/><stop offset="60%" stop-color="#c9a96e"/><stop offset="100%" stop-color="#7a5420"/></radialGradient></defs>
+          <ellipse cx="30" cy="50" rx="20" ry="5" fill="url(#rg2)" opacity="0.8"/>
+          <rect x="10" y="28" width="40" height="22" rx="3" fill="url(#rg2)"/>
+          <ellipse cx="30" cy="28" rx="20" ry="5" fill="url(#rg2)"/>
+          <path d="M30 10 Q42 22 30 40 Q18 22 30 10Z" fill="#cce8ff" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="recent-name">Royal Vintage Marquise</div>
+      <div class="recent-price">₹2,10,500</div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <defs><linearGradient id="rg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5f5f0"/><stop offset="100%" stop-color="#c0c0b0"/></linearGradient></defs>
+          <ellipse cx="30" cy="50" rx="20" ry="5" fill="url(#rg3)"/>
+          <rect x="10" y="28" width="40" height="22" rx="3" fill="url(#rg3)"/>
+          <ellipse cx="30" cy="28" rx="20" ry="5" fill="url(#rg3)"/>
+          <ellipse cx="30" cy="40" rx="20" ry="4" fill="url(#rg3)" opacity="0.5"/>
+          <circle cx="30" cy="20" r="4" fill="#d8eeff" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+          <circle cx="22" cy="24" r="3" fill="#d8eeff"/>
+          <circle cx="38" cy="24" r="3" fill="#d8eeff"/>
+        </svg>
+      </div>
+      <div class="recent-name">Minimalist Gold Infinity</div>
+      <div class="recent-price">₹42,000</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span style="color:var(--gold);font-size:16px;">◆</span>Trilok – Om Sri Jewel</div>
+      <p class="footer-tagline">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern artisanal innovation.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a class="social-btn" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links"><li><a href="#">Bridal Heritage</a></li><li><a href="#">Everyday Elegance</a></li><li><a href="#">Temple Jewellery</a></li><li><a href="#">Modern Minimalism</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Customer Care</div>
+      <ul class="footer-links"><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Store Locator</a></li><li><a href="#">Gold Rate Guide</a></li><li><a href="#">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Join The Inner Circle</div>
+      <p class="footer-newsletter-text">Receive updates on new collections and exclusive events.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Email Address">
+        <button class="newsletter-btn">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-trust-row">
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>BIS Hallmark</div>
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Lifetime Exchange</div>
+      <div class="f-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Payment</div>
+    </div>
+    <div class="footer-copy">© 2026 Trilok – Om Sri Jewel. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Nav shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 30px rgba(115,64,42,0.08)' : 'none';
+});
+
+// Gallery mode
+function setMode(btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Thumbnail select
+document.querySelectorAll('.thumb').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  });
+});
+
+// Purity select
+function selectPurity(chip) {
+  document.querySelectorAll('.purity-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  // Price update simulation
+  const prices = {'14kt':'₹1,08,999','18kt':'₹1,42,999','22kt':'₹1,84,999'};
+  const main = document.querySelector('.price-main');
+  main.childNodes[0].textContent = prices[chip.textContent] || '₹1,42,999';
+}
+
+// Size select
+function selectSize(chip) {
+  if (chip.classList.contains('unavailable')) return;
+  document.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+}
+
+// Add to cart
+function addToCart(btn) {
+  const orig = btn.innerHTML;
+  btn.style.background = 'var(--brown)';
+  btn.style.color = 'white';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg> Added to Cart';
+  setTimeout(() => {
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.innerHTML = orig;
+    const count = document.querySelector('.cart-count');
+    count.textContent = parseInt(count.textContent) + 1;
+    // redirect to cart after adding
+    window.location.href = 'trilok-cart.html';
+  }, 1800);
+}
+
+// Wishlist toggle
+function toggleWishlist() {
+  const btn = document.getElementById('wishlist-btn');
+  const svg = btn.querySelector('svg path');
+  const isActive = btn.style.color === 'white';
+  btn.style.background = isActive ? '' : 'var(--brown)';
+  btn.style.color = isActive ? '' : 'white';
+  btn.style.borderColor = isActive ? '' : 'var(--brown)';
+  if (svg) svg.setAttribute('fill', isActive ? 'none' : 'white');
+}
+
+// Tab switching
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Pincode check
+document.querySelector('.pincode-btn').addEventListener('click', () => {
+  const val = document.querySelector('.pincode-input').value;
+  const note = document.getElementById('delivery-note');
+  if (val.length === 6 && /^\d+$/.test(val)) {
+    note.textContent = 'Delivery available · Expected by ' + ['Mon','Tue','Wed','Thu','Fri'][Math.floor(Math.random()*5)] + ', Dec ' + (24 + Math.floor(Math.random()*5));
+    note.style.color = 'var(--brown)';
+  } else {
+    note.textContent = 'Please enter a valid 6-digit pincode.';
+    note.style.color = '#c0392b';
+  }
+});
+</script>
+</body>
+</html>

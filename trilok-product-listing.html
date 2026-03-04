@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamond Rings — Trilok · Om Sri Jewel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #73402a;
+  --brown-light: #9a5a3c;
+  --brown-dark: #4e2b1a;
+  --brown-muted: #b5815f;
+  --cream: #fdf8f4;
+  --cream-dark: #f5ede3;
+  --white: #ffffff;
+  --gold: #c9a96e;
+  --gold-light: #f0d890;
+  --text-dark: #2a1a10;
+  --text-mid: #5c3d27;
+  --border: rgba(115,64,42,0.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;}
+
+/* ── ANNOUNCE BAR ── */
+.announce-bar{
+  background:var(--brown);color:var(--white);
+  text-align:center;padding:10px 20px;
+  font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;
+  transition:box-shadow 0.3s;
+}
+.nav-left{display:flex;align-items:center;gap:40px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--text-dark);
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:400;position:relative;padding-bottom:3px;transition:color 0.3s;
+  display:flex;align-items:center;gap:4px;
+}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown);transition:width 0.3s;}
+.nav-links a:hover{color:var(--brown);}
+.nav-links a:hover::after{width:100%;}
+.nav-links a.active{color:var(--brown);}
+.nav-links a.active::after{width:100%;}
+.nav-chevron{font-size:8px;opacity:0.5;}
+
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;
+  color:var(--brown);letter-spacing:5px;
+  text-transform:uppercase;text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo-diamond{color:var(--gold);font-size:14px;}
+
+.nav-actions{display:flex;align-items:center;gap:20px;}
+.nav-icon{width:18px;height:18px;cursor:pointer;color:var(--text-dark);stroke-width:1.5;transition:color 0.2s;}
+.nav-icon:hover{color:var(--brown);}
+.cart-wrap{position:relative;}
+.cart-count{
+  position:absolute;top:-6px;right:-7px;
+  width:16px;height:16px;background:var(--brown);color:var(--white);
+  font-size:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+.nav-search{
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border);padding:7px 14px;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1px;
+  color:#aaa;cursor:pointer;transition:border-color 0.3s;
+  width:160px;
+}
+.nav-search:hover{border-color:var(--brown-muted);}
+
+/* ── BREADCRUMB ── */
+.breadcrumb-wrap{
+  padding:16px 60px;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+}
+.breadcrumb{
+  display:flex;align-items:center;gap:8px;
+  font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--brown-muted);
+}
+.breadcrumb a{color:var(--brown-muted);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--brown);}
+.breadcrumb-sep{font-size:9px;opacity:0.5;}
+.breadcrumb .current{color:var(--text-dark);}
+
+/* ── COLLECTION HEADER ── */
+.collection-header{
+  text-align:center;padding:60px 80px 48px;
+  background:linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+  position:relative;overflow:hidden;
+}
+.collection-header::before{
+  content:'◇';
+  position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  font-size:200px;color:rgba(115,64,42,0.03);
+  font-family:'Cormorant Garamond',serif;
+  pointer-events:none;
+}
+.collection-tag{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--brown-muted);margin-bottom:14px;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.collection-tag::before,.collection-tag::after{
+  content:'';display:inline-block;width:40px;height:1px;background:var(--brown-muted);opacity:0.5;
+}
+.collection-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px;font-weight:400;color:var(--text-dark);
+  line-height:1.05;margin-bottom:16px;
+}
+.collection-title em{font-style:italic;color:var(--brown);}
+.collection-desc{
+  font-size:13.5px;color:var(--text-mid);font-weight:300;
+  max-width:520px;margin:0 auto;line-height:1.85;
+}
+
+/* ── FILTER + LISTING LAYOUT ── */
+.listing-layout{
+  display:grid;grid-template-columns:240px 1fr;
+  gap:0;min-height:calc(100vh - 200px);
+  border-top:1px solid var(--border);
+}
+
+/* ── SIDEBAR FILTERS ── */
+.sidebar{
+  border-right:1px solid var(--border);
+  padding:32px 0;
+  background:var(--white);
+  position:sticky;top:70px;height:calc(100vh - 70px);
+  overflow-y:auto;
+}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-track{background:transparent;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+.filter-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px 24px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:8px;
+}
+.filter-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dark);
+}
+.filter-title svg{width:14px;height:14px;color:var(--brown);}
+.filter-clear{
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--brown-muted);cursor:pointer;text-decoration:underline;
+  background:none;border:none;font-family:'Jost',sans-serif;
+  transition:color 0.2s;
+}
+.filter-clear:hover{color:var(--brown);}
+
+.filter-group{border-bottom:1px solid var(--border);}
+.filter-group-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;cursor:pointer;
+  font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dark);
+  user-select:none;transition:color 0.2s;
+}
+.filter-group-header:hover{color:var(--brown);}
+.filter-arrow{
+  width:14px;height:14px;color:var(--brown-muted);
+  transition:transform 0.3s;
+}
+.filter-group.open .filter-arrow{transform:rotate(180deg);}
+.filter-body{
+  padding:0 24px 20px;
+  display:none;
+}
+.filter-group.open .filter-body{display:block;}
+
+/* Price Range */
+.price-range-labels{
+  display:flex;justify-content:space-between;
+  font-size:11px;color:var(--brown-muted);margin-bottom:14px;
+  font-family:'Cormorant Garamond',serif;font-size:14px;
+}
+.range-slider{
+  -webkit-appearance:none;width:100%;height:2px;
+  background:linear-gradient(to right, var(--brown) 0%, var(--brown) 40%, rgba(115,64,42,0.15) 40%);
+  outline:none;cursor:pointer;border-radius:2px;margin-bottom:4px;
+}
+.range-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;
+  border-radius:50%;background:var(--brown);cursor:pointer;
+  border:2px solid var(--white);box-shadow:0 2px 8px rgba(115,64,42,0.3);
+}
+
+/* Checkboxes */
+.filter-check{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 0;cursor:pointer;
+  font-size:11.5px;color:var(--text-mid);
+  transition:color 0.2s;user-select:none;
+}
+.filter-check:hover{color:var(--brown);}
+.check-box{
+  width:15px;height:15px;flex-shrink:0;
+  border:1.5px solid rgba(115,64,42,0.25);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.filter-check.checked .check-box{background:var(--brown);border-color:var(--brown);}
+.filter-check.checked .check-box::after{
+  content:'✓';font-size:9px;color:white;
+}
+.filter-check.checked{color:var(--brown);}
+.check-count{
+  margin-left:auto;font-size:10px;color:var(--brown-muted);
+  background:var(--cream);padding:2px 7px;border-radius:10px;
+}
+
+/* ── MAIN LISTING AREA ── */
+.listing-main{padding:0;}
+
+.listing-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 36px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:70px;background:var(--white);z-index:10;
+}
+.listing-count{
+  font-size:12px;color:var(--brown-muted);
+  font-weight:300;letter-spacing:0.5px;
+}
+.listing-count strong{color:var(--text-dark);font-weight:500;}
+
+.active-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.filter-pill{
+  display:flex;align-items:center;gap:6px;
+  background:var(--cream);border:1px solid var(--border);
+  padding:5px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--brown);
+  cursor:pointer;transition:all 0.2s;
+}
+.filter-pill:hover{background:var(--brown);color:var(--white);}
+.filter-pill .pill-x{font-size:11px;opacity:0.7;}
+
+.sort-wrap{display:flex;align-items:center;gap:10px;}
+.sort-label{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-muted);}
+.sort-select{
+  border:1px solid var(--border);padding:7px 28px 7px 12px;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1px;
+  color:var(--text-dark);background:var(--white);cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2373402a'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  outline:none;
+}
+
+.view-toggle{display:flex;gap:6px;}
+.view-btn{
+  width:32px;height:32px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--brown-muted);transition:all 0.2s;
+}
+.view-btn.active,.view-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.view-btn svg{width:14px;height:14px;}
+
+/* ── PRODUCTS GRID ── */
+.products-area{padding:32px 36px 60px;}
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+/* ── PRODUCT CARD ── */
+.product-card{
+  position:relative;cursor:pointer;
+  background:var(--white);
+  border:1px solid transparent;
+  transition:all 0.4s ease;
+  overflow:hidden;
+}
+.product-card:hover{
+  border-color:var(--border);
+  box-shadow:0 12px 40px rgba(115,64,42,0.1);
+  transform:translateY(-4px);
+}
+
+.product-img-wrap{
+  position:relative;overflow:hidden;
+  background:var(--cream);
+  aspect-ratio:4/5;
+}
+.product-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.6s ease;
+}
+.product-card:hover .product-img{transform:scale(1.04);}
+
+/* Placeholder SVG rings */
+.ring-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream);
+  transition:transform 0.6s ease;
+}
+.product-card:hover .ring-placeholder{transform:scale(1.04);}
+
+/* Badge */
+.product-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--brown);color:var(--white);
+  font-size:8.5px;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 10px;z-index:3;
+}
+.product-badge.new{background:var(--text-dark);}
+.product-badge.limited{background:linear-gradient(135deg,var(--brown),var(--brown-light));}
+.product-badge.sale{background:#c0392b;}
+.product-badge.antique{background:var(--gold);color:var(--text-dark);}
+
+/* Wishlist */
+.wishlist-btn{
+  position:absolute;top:14px;right:14px;
+  width:34px;height:34px;
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--brown);z-index:3;
+  transition:all 0.3s;opacity:0;
+}
+.product-card:hover .wishlist-btn{opacity:1;}
+.wishlist-btn:hover{background:var(--brown);color:var(--white);}
+.wishlist-btn svg{width:15px;height:15px;}
+
+/* Rating */
+.product-rating{
+  position:absolute;bottom:14px;left:14px;
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);
+  padding:4px 10px;
+  display:flex;align-items:center;gap:5px;
+  font-size:10.5px;font-weight:500;color:var(--text-dark);
+  z-index:3;opacity:0;transition:opacity 0.3s;
+}
+.product-card:hover .product-rating{opacity:1;}
+.star-icon{color:var(--gold);font-size:10px;}
+
+/* Quick add */
+.quick-add{
+  position:absolute;bottom:14px;right:14px;
+  width:36px;height:36px;
+  background:var(--brown);color:var(--white);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  z-index:3;opacity:0;transition:all 0.3s;
+  transform:translateY(8px);
+}
+.product-card:hover .quick-add{opacity:1;transform:translateY(0);}
+.quick-add:hover{background:var(--brown-dark);}
+.quick-add svg{width:16px;height:16px;}
+
+/* Daily Wear tag */
+.daily-tag{
+  position:absolute;top:14px;left:14px;
+  background:rgba(253,248,244,0.92);backdrop-filter:blur(6px);
+  color:var(--brown);
+  font-size:8.5px;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 10px;z-index:3;
+  border:1px solid var(--border);
+}
+
+/* Product Info */
+.product-info{
+  padding:18px 18px 22px;
+  background:var(--white);
+  border-top:1px solid var(--border);
+}
+.product-metal{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--brown-muted);margin-bottom:6px;
+}
+.product-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-weight:400;color:var(--text-dark);
+  margin-bottom:4px;line-height:1.3;
+}
+.product-stone{
+  font-size:10.5px;color:var(--brown-muted);font-weight:300;
+  margin-bottom:14px;letter-spacing:0.3px;
+}
+.product-footer{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.product-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;color:var(--brown);
+}
+.product-price-old{
+  font-size:12px;color:#bbb;text-decoration:line-through;
+  margin-left:7px;font-family:'Jost',sans-serif;
+}
+.product-rating-inline{
+  display:flex;align-items:center;gap:4px;
+  font-size:10.5px;color:var(--brown-muted);
+}
+.stars{color:var(--gold);font-size:9px;letter-spacing:1px;}
+
+/* ── PAGINATION ── */
+.pagination-wrap{
+  padding:40px 36px 60px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  border-top:1px solid var(--border);
+}
+.pagination{display:flex;align-items:center;gap:6px;}
+.page-btn{
+  width:38px;height:38px;
+  border:1px solid var(--border);background:transparent;
+  cursor:pointer;font-family:'Jost',sans-serif;
+  font-size:12px;color:var(--text-mid);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.page-btn:hover{border-color:var(--brown);color:var(--brown);}
+.page-btn.active{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.page-btn.nav-page{color:var(--brown);}
+.page-sep{color:var(--brown-muted);font-size:12px;padding:0 4px;}
+.page-info{
+  font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--brown-muted);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--cream-dark);
+  border-top:1px solid var(--border);
+  padding:64px 80px 32px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+  gap:60px;margin-bottom:52px;
+}
+.footer-brand{}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:var(--brown);
+  letter-spacing:4px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;margin-bottom:16px;
+}
+.footer-tagline{
+  font-size:12.5px;color:var(--text-mid);font-weight:300;
+  line-height:1.8;max-width:260px;margin-bottom:24px;
+}
+.footer-social{display:flex;gap:14px;}
+.social-btn{
+  width:34px;height:34px;
+  border:1px solid rgba(115,64,42,0.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--brown);cursor:pointer;transition:all 0.3s;
+  text-decoration:none;
+}
+.social-btn:hover{background:var(--brown);color:var(--white);border-color:var(--brown);}
+.social-btn svg{width:15px;height:15px;}
+
+.footer-col-title{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-dark);margin-bottom:20px;font-weight:500;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.footer-links a{
+  text-decoration:none;font-size:12.5px;color:var(--text-mid);
+  font-weight:300;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--brown);}
+
+.footer-newsletter-text{
+  font-size:12.5px;color:var(--text-mid);font-weight:300;
+  line-height:1.7;margin-bottom:18px;
+}
+.newsletter-form{display:flex;gap:0;}
+.newsletter-input{
+  flex:1;padding:11px 14px;
+  border:1px solid rgba(115,64,42,0.2);border-right:none;
+  font-family:'Jost',sans-serif;font-size:11.5px;
+  background:var(--white);outline:none;color:var(--text-dark);
+}
+.newsletter-input::placeholder{color:#c4a48a;}
+.newsletter-btn{
+  background:var(--brown);color:var(--white);
+  border:none;padding:0 20px;
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:background 0.3s;white-space:nowrap;
+}
+.newsletter-btn:hover{background:var(--brown-dark);}
+
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:28px;border-top:1px solid var(--border);
+}
+.footer-trust{display:flex;align-items:center;gap:28px;}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brown-muted);
+}
+.trust-item svg{width:15px;height:15px;color:var(--gold);}
+.footer-copy{font-size:10.5px;color:var(--brown-muted);font-weight:300;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp 0.5s ease forwards;}
+.fade-up:nth-child(1){animation-delay:0.05s}
+.fade-up:nth-child(2){animation-delay:0.12s}
+.fade-up:nth-child(3){animation-delay:0.19s}
+.fade-up:nth-child(4){animation-delay:0.05s}
+.fade-up:nth-child(5){animation-delay:0.12s}
+.fade-up:nth-child(6){animation-delay:0.19s}
+.fade-up:nth-child(7){animation-delay:0.05s}
+.fade-up:nth-child(8){animation-delay:0.12s}
+.fade-up:nth-child(9){animation-delay:0.19s}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(115,64,42,0.2);}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">Free Shipping on All Orders &nbsp;·&nbsp; BIS Hallmarked Certified Gold &nbsp;·&nbsp; Lifetime Exchange</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-left">
+    <ul class="nav-links">
+      <li><a href="trilok-product-listing.html" class="active">Rings <span class="nav-chevron">▾</span></a></li>
+      <li><a href="trilok-product-listing.html">Earrings</a></li>
+      <li><a href="trilok-product-listing.html">Necklaces</a></li>
+      <li><a href="trilok-product-listing.html">Bangles</a></li>
+      <li><a href="trilok-product-listing.html">Bridal</a></li>
+      <li><a href="trilok-product-listing.html">Gold Coins</a></li>
+    </ul>
+  </div>
+
+  <a class="nav-logo" href="trilok-jewellery (2).html">
+    <span class="nav-logo-diamond">◆</span>
+    Trilok &mdash; Om Sri Jewel
+  </a>
+
+  <div class="nav-actions">
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:#aaa"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search...
+    </div>
+    <a href="trilok-cart.html" class="nav-icon">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <div class="cart-wrap">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="cart-count">0</div>
+    </div>
+    <a href="login-signup.html">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <div class="breadcrumb">
+    <a href="trilok-jewellery (2).html">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="trilok-product-listing.html">Collections</a>
+    <span class="breadcrumb-sep">›</span>
+    <span class="current">Diamond Rings</span>
+  </div>
+</div>
+
+<!-- COLLECTION HEADER -->
+<div class="collection-header">
+  <div class="collection-tag">The Collection</div>
+  <h1 class="collection-title">The <em>Diamond</em> Signature Collection</h1>
+  <p class="collection-desc">Discover our curated selection of masterfully crafted diamond rings. From timeless solitaires to modern halo designs, each piece is a testament to eternal elegance and unmatched brilliance.</p>
+</div>
+
+<!-- LISTING LAYOUT -->
+<div class="listing-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="filter-header">
+      <div class="filter-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Filters
+      </div>
+      <button class="filter-clear">Clear All</button>
+    </div>
+
+    <!-- Price Range -->
+    <div class="filter-group open">
+      <div class="filter-group-header" onclick="toggleFilter(this)">
+        Price Range
+        <svg class="filter-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="filter-body">
+        <div class="price-range-labels">
+          <span>₹20,000</span>
+          <span>₹5,00,000</span>
+        </div>
+        <input type="range" class="range-slider" min="20000" max="500000" value="200000">
+      </div>
+    </div>
+
+    <!-- Metal Type -->
+    <div class="filter-group open">
+      <div class="filter-group-header" onclick="toggleFilter(this)">
+        Metal Type
+        <svg class="filter-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="filter-body">
+        <label class="filter-check checked" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          18k Yellow Gold
+          <span class="check-count">48</span>
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          22k Gold
+          <span class="check-count">23</span>
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          950 Platinum
+          <span class="check-count">17</span>
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          18k Rose Gold
+          <span class="check-count">34</span>
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          14k White Gold
+          <span class="check-count">26</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Occasion -->
+    <div class="filter-group open">
+      <div class="filter-group-header" onclick="toggleFilter(this)">
+        Occasion
+        <svg class="filter-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="filter-body">
+        <label class="filter-check checked" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Engagement
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Wedding
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Festive Wear
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Daily Elegance
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Anniversary
+        </label>
+      </div>
+    </div>
+
+    <!-- Stone Type -->
+    <div class="filter-group open">
+      <div class="filter-group-header" onclick="toggleFilter(this)">
+        Stone Type
+        <svg class="filter-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="filter-body">
+        <label class="filter-check checked" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          VVS Diamonds
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Emeralds
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Sapphires
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Rubies
+        </label>
+        <label class="filter-check" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          Pearl
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN LISTING -->
+  <main class="listing-main">
+    <!-- Toolbar -->
+    <div class="listing-toolbar">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <div class="listing-count">Showing <strong>1–12</strong> of <strong>148</strong> Results</div>
+        <div class="active-filters">
+          <div class="filter-pill">18k Yellow Gold <span class="pill-x">✕</span></div>
+          <div class="filter-pill">Engagement <span class="pill-x">✕</span></div>
+          <div class="filter-pill">VVS Diamonds <span class="pill-x">✕</span></div>
+        </div>
+      </div>
+      <div class="sort-wrap">
+        <span class="sort-label">Sort By:</span>
+        <select class="sort-select">
+          <option>Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+          <option>Bestsellers</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-btn active" title="Grid">
+            <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="0.5"/><rect x="9" y="1" width="6" height="6" rx="0.5"/><rect x="1" y="9" width="6" height="6" rx="0.5"/><rect x="9" y="9" width="6" height="6" rx="0.5"/></svg>
+          </button>
+          <button class="view-btn" title="List">
+            <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="2" width="14" height="2" rx="0.5"/><rect x="1" y="7" width="14" height="2" rx="0.5"/><rect x="1" y="12" width="14" height="2" rx="0.5"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-area">
+      <div class="products-grid">
+
+        <!-- Card 1: Bestseller -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="g1" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="diamond1" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="40%" stop-color="#e8f4ff"/>
+                    <stop offset="100%" stop-color="#a0c8f0"/>
+                  </radialGradient>
+                </defs>
+                <!-- Ring band -->
+                <ellipse cx="80" cy="150" rx="58" ry="16" fill="url(#g1)" opacity="0.9"/>
+                <ellipse cx="80" cy="150" rx="58" ry="16" fill="none" stroke="#c9a96e" stroke-width="1"/>
+                <rect x="22" y="80" width="116" height="70" rx="8" fill="url(#g1)"/>
+                <ellipse cx="80" cy="80" rx="58" ry="16" fill="url(#g1)"/>
+                <ellipse cx="80" cy="80" rx="38" ry="9" fill="#a0702e"/>
+                <!-- Halo setting -->
+                <circle cx="80" cy="60" r="32" fill="#b8860b" opacity="0.3"/>
+                <circle cx="80" cy="60" r="28" fill="url(#g1)" stroke="#c9a96e" stroke-width="1.5"/>
+                <!-- Center diamond (teardrop) -->
+                <path d="M80 30 Q95 45 80 78 Q65 45 80 30Z" fill="url(#diamond1)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5"/>
+                <path d="M80 30 L95 55 L80 78 L65 55Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+                <!-- Halo diamonds small circles -->
+                <circle cx="55" cy="55" r="4" fill="url(#diamond1)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="105" cy="55" r="4" fill="url(#diamond1)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="68" cy="38" r="3.5" fill="url(#diamond1)"/>
+                <circle cx="92" cy="38" r="3.5" fill="url(#diamond1)"/>
+                <circle cx="58" cy="70" r="3" fill="url(#diamond1)"/>
+                <circle cx="102" cy="70" r="3" fill="url(#diamond1)"/>
+              </svg>
+            </div>
+            <div class="product-badge">Bestseller</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Yellow Gold</div>
+            <div class="product-name">Ethereal Diamond Halo Ring</div>
+            <div class="product-stone">Certified VVS Diamond</div>
+            <div class="product-footer">
+              <div class="product-price">₹1,24,500</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Limited -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap" style="background:linear-gradient(160deg,#1a0d0d,#2d1a0e);">
+            <div class="ring-placeholder" style="background:linear-gradient(160deg,#1a0d0d,#2d1a0e);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="g2" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="emerald1" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#a8f0c0"/>
+                    <stop offset="40%" stop-color="#2ecc71"/>
+                    <stop offset="100%" stop-color="#0a5c2e"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="15" fill="url(#g2)" opacity="0.8"/>
+                <rect x="25" y="82" width="110" height="68" rx="6" fill="url(#g2)"/>
+                <ellipse cx="80" cy="82" rx="55" ry="15" fill="url(#g2)"/>
+                <ellipse cx="80" cy="82" rx="36" ry="9" fill="#8B6010"/>
+                <!-- Oval emerald solitaire setting -->
+                <ellipse cx="80" cy="58" r="28" fill="#5a3a10" opacity="0.6"/>
+                <ellipse cx="80" cy="58" rx="26" ry="26" fill="url(#g2)" stroke="#c9a96e" stroke-width="1.5"/>
+                <ellipse cx="80" cy="56" rx="16" ry="20" fill="url(#emerald1)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                <ellipse cx="80" cy="56" rx="10" ry="13" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+                <ellipse cx="80" cy="56" rx="5" ry="7" fill="rgba(255,255,255,0.3)"/>
+              </svg>
+            </div>
+            <div class="product-badge limited">Limited</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">22k Gold</div>
+            <div class="product-name">Royal Emerald Solitaire</div>
+            <div class="product-stone">Zambian Emerald</div>
+            <div class="product-footer">
+              <div class="product-price">₹89,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: New -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <linearGradient id="plat" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f5f5f5"/>
+                    <stop offset="50%" stop-color="#c8c8c8"/>
+                    <stop offset="100%" stop-color="#888"/>
+                  </linearGradient>
+                </defs>
+                <!-- Minimal platinum band -->
+                <ellipse cx="80" cy="148" rx="52" ry="13" fill="url(#plat)"/>
+                <rect x="28" y="85" width="104" height="63" rx="4" fill="url(#plat)"/>
+                <ellipse cx="80" cy="85" rx="52" ry="13" fill="url(#plat)"/>
+                <ellipse cx="80" cy="85" rx="35" ry="8" fill="#999"/>
+                <!-- Ultra-thin second band -->
+                <ellipse cx="80" cy="118" rx="52" ry="6" fill="url(#plat)" opacity="0.6"/>
+                <rect x="28" y="112" width="104" height="6" fill="url(#plat)" opacity="0.6"/>
+                <!-- Shine lines -->
+                <line x1="45" y1="90" x2="42" y2="145" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="55" y1="86" x2="52" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <div class="product-badge new">New</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">950 Platinum</div>
+            <div class="product-name">Minimalist Platinum Band</div>
+            <div class="product-stone">None</div>
+            <div class="product-footer">
+              <div class="product-price">₹45,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★☆</span>
+                <span>4.7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Antique -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap" style="background:linear-gradient(145deg,#f5e8e0,#e8d0c0);">
+            <div class="ring-placeholder" style="background:linear-gradient(145deg,#f5e8e0,#e8d0c0);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="rosegold" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffd4bc"/>
+                    <stop offset="50%" stop-color="#e8956d"/>
+                    <stop offset="100%" stop-color="#9a4820"/>
+                  </radialGradient>
+                  <radialGradient id="ruby1" cx="40%" cy="30%">
+                    <stop offset="0%" stop-color="#ff9090"/>
+                    <stop offset="50%" stop-color="#cc2222"/>
+                    <stop offset="100%" stop-color="#660000"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="14" fill="url(#rosegold)" opacity="0.9"/>
+                <rect x="25" y="83" width="110" height="67" rx="6" fill="url(#rosegold)"/>
+                <ellipse cx="80" cy="83" rx="55" ry="14" fill="url(#rosegold)"/>
+                <ellipse cx="80" cy="83" rx="38" ry="9" fill="#b05630"/>
+                <!-- Marquise ruby -->
+                <ellipse cx="80" cy="58" r="26" fill="#7a3515" opacity="0.4"/>
+                <ellipse cx="80" cy="58" rx="24" ry="24" fill="url(#rosegold)" stroke="#e8956d" stroke-width="1.5"/>
+                <!-- Marquise shaped ruby -->
+                <path d="M80 38 Q100 58 80 78 Q60 58 80 38Z" fill="url(#ruby1)" stroke="rgba(255,150,150,0.5)" stroke-width="1"/>
+                <path d="M80 38 L100 58 L80 78 L60 58Z" fill="none" stroke="rgba(255,200,200,0.3)" stroke-width="0.5"/>
+                <path d="M80 44 Q94 58 80 72 Q66 58 80 44Z" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <div class="product-badge antique">Antique</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Rose Gold</div>
+            <div class="product-name">Vintage Ruby Marquise</div>
+            <div class="product-stone">Pigeon Blood Ruby</div>
+            <div class="product-footer">
+              <div class="product-price">₹1,56,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★☆☆</span>
+                <span>3.5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Daily Wear -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f8f8f0"/>
+                    <stop offset="50%" stop-color="#d4d4c0"/>
+                    <stop offset="100%" stop-color="#a0a080"/>
+                  </linearGradient>
+                  <radialGradient id="diam2" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="60%" stop-color="#d8eeff"/>
+                    <stop offset="100%" stop-color="#90b8e0"/>
+                  </radialGradient>
+                </defs>
+                <!-- Stack of 3 bands -->
+                <ellipse cx="80" cy="155" rx="52" ry="11" fill="url(#wg)"/>
+                <rect x="28" y="120" width="104" height="35" rx="3" fill="url(#wg)"/>
+                <ellipse cx="80" cy="120" rx="52" ry="11" fill="url(#wg)"/>
+
+                <ellipse cx="80" cy="135" rx="52" ry="10" fill="#c8c8b0" opacity="0.6"/>
+
+                <ellipse cx="80" cy="110" rx="52" ry="11" fill="url(#wg)"/>
+                <rect x="28" y="75" width="104" height="35" rx="3" fill="url(#wg)"/>
+                <ellipse cx="80" cy="75" rx="52" ry="11" fill="url(#wg)"/>
+
+                <!-- diamonds along band -->
+                <circle cx="56" cy="92" r="5" fill="url(#diam2)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="70" cy="92" r="5" fill="url(#diam2)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="80" cy="90" r="6" fill="url(#diam2)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="90" cy="92" r="5" fill="url(#diam2)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+                <circle cx="104" cy="92" r="5" fill="url(#diam2)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <div class="daily-tag">Daily Wear</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">14k White Gold</div>
+            <div class="product-name">Geometric Diamond Stack</div>
+            <div class="product-stone">Lab Grown Diamond</div>
+            <div class="product-footer">
+              <div class="product-price">₹32,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Premium -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder" style="background:var(--cream-dark);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="yg2" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="sapphire" cx="40%" cy="30%">
+                    <stop offset="0%" stop-color="#a0c0ff"/>
+                    <stop offset="50%" stop-color="#2244cc"/>
+                    <stop offset="100%" stop-color="#001066"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="14" fill="url(#yg2)" opacity="0.9"/>
+                <rect x="25" y="84" width="110" height="66" rx="6" fill="url(#yg2)"/>
+                <ellipse cx="80" cy="84" rx="55" ry="14" fill="url(#yg2)"/>
+                <ellipse cx="80" cy="84" rx="37" ry="9" fill="#8B6010"/>
+                <!-- Oval sapphire -->
+                <ellipse cx="80" cy="58" r="26" fill="#2a1a60" opacity="0.4"/>
+                <ellipse cx="80" cy="58" rx="24" ry="24" fill="url(#yg2)" stroke="#c9a96e" stroke-width="1.5"/>
+                <ellipse cx="80" cy="58" rx="15" ry="18" fill="url(#sapphire)" stroke="rgba(150,180,255,0.5)" stroke-width="1"/>
+                <ellipse cx="78" cy="54" rx="7" ry="9" fill="rgba(255,255,255,0.25)"/>
+              </svg>
+            </div>
+            <div class="product-badge">Premium</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Yellow Gold</div>
+            <div class="product-name">Classic Oval Sapphire</div>
+            <div class="product-stone">Blue Sapphire</div>
+            <div class="product-footer">
+              <div class="product-price">₹2,10,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★☆</span>
+                <span>4.7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7: Bestseller (repeat with variation) -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="g7" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="d7" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="40%" stop-color="#eaf4ff"/>
+                    <stop offset="100%" stop-color="#b0d4f8"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="58" ry="16" fill="url(#g7)" opacity="0.9"/>
+                <rect x="22" y="80" width="116" height="70" rx="8" fill="url(#g7)"/>
+                <ellipse cx="80" cy="80" rx="58" ry="16" fill="url(#g7)"/>
+                <ellipse cx="80" cy="80" rx="38" ry="9" fill="#a0702e"/>
+                <circle cx="80" cy="60" r="32" fill="#b8860b" opacity="0.3"/>
+                <circle cx="80" cy="60" r="28" fill="url(#g7)" stroke="#c9a96e" stroke-width="1.5"/>
+                <path d="M80 30 Q95 45 80 78 Q65 45 80 30Z" fill="url(#d7)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5"/>
+                <circle cx="55" cy="55" r="4" fill="url(#d7)"/>
+                <circle cx="105" cy="55" r="4" fill="url(#d7)"/>
+                <circle cx="68" cy="38" r="3.5" fill="url(#d7)"/>
+                <circle cx="92" cy="38" r="3.5" fill="url(#d7)"/>
+              </svg>
+            </div>
+            <div class="product-badge">Bestseller</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Yellow Gold</div>
+            <div class="product-name">Ethereal Diamond Halo Ring</div>
+            <div class="product-stone">Certified VVS Diamond</div>
+            <div class="product-footer">
+              <div class="product-price">₹1,24,500</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8: Limited -->
+        <div class="product-card fade-up" onclick="window.location.href='trilok-product-detail.html'">
+          <div class="product-img-wrap" style="background:linear-gradient(160deg,#1a0d0d,#2d1a0e);">
+            <div class="ring-placeholder" style="background:linear-gradient(160deg,#1a0d0d,#2d1a0e);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="g8" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="em8" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#a8f0c0"/>
+                    <stop offset="40%" stop-color="#2ecc71"/>
+                    <stop offset="100%" stop-color="#0a5c2e"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="15" fill="url(#g8)" opacity="0.8"/>
+                <rect x="25" y="82" width="110" height="68" rx="6" fill="url(#g8)"/>
+                <ellipse cx="80" cy="82" rx="55" ry="15" fill="url(#g8)"/>
+                <ellipse cx="80" cy="82" rx="36" ry="9" fill="#8B6010"/>
+                <ellipse cx="80" cy="58" r="28" fill="#5a3a10" opacity="0.6"/>
+                <ellipse cx="80" cy="58" rx="26" ry="26" fill="url(#g8)" stroke="#c9a96e" stroke-width="1.5"/>
+                <ellipse cx="80" cy="56" rx="16" ry="20" fill="url(#em8)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                <ellipse cx="80" cy="56" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+              </svg>
+            </div>
+            <div class="product-badge limited">Limited</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">22k Gold</div>
+            <div class="product-name">Royal Emerald Solitaire</div>
+            <div class="product-stone">Zambian Emerald</div>
+            <div class="product-footer">
+              <div class="product-price">₹89,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 9: New -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <linearGradient id="plat2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f5f5f5"/>
+                    <stop offset="50%" stop-color="#c8c8c8"/>
+                    <stop offset="100%" stop-color="#888"/>
+                  </linearGradient>
+                </defs>
+                <ellipse cx="80" cy="148" rx="52" ry="13" fill="url(#plat2)"/>
+                <rect x="28" y="85" width="104" height="63" rx="4" fill="url(#plat2)"/>
+                <ellipse cx="80" cy="85" rx="52" ry="13" fill="url(#plat2)"/>
+                <ellipse cx="80" cy="85" rx="35" ry="8" fill="#999"/>
+                <ellipse cx="80" cy="118" rx="52" ry="6" fill="url(#plat2)" opacity="0.6"/>
+                <line x1="45" y1="90" x2="42" y2="145" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-badge new">New</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">950 Platinum</div>
+            <div class="product-name">Minimalist Platinum Band</div>
+            <div class="product-stone">None</div>
+            <div class="product-footer">
+              <div class="product-price">₹45,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★☆</span>
+                <span>4.7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 10: Antique -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap" style="background:linear-gradient(145deg,#f5ece0,#e8d5c5);">
+            <div class="ring-placeholder" style="background:linear-gradient(145deg,#f5ece0,#e8d5c5);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="rg10" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffd4bc"/>
+                    <stop offset="50%" stop-color="#e8956d"/>
+                    <stop offset="100%" stop-color="#9a4820"/>
+                  </radialGradient>
+                  <radialGradient id="ruby10" cx="40%" cy="30%">
+                    <stop offset="0%" stop-color="#ff9090"/>
+                    <stop offset="50%" stop-color="#cc2222"/>
+                    <stop offset="100%" stop-color="#660000"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="14" fill="url(#rg10)" opacity="0.9"/>
+                <rect x="25" y="83" width="110" height="67" rx="6" fill="url(#rg10)"/>
+                <ellipse cx="80" cy="83" rx="55" ry="14" fill="url(#rg10)"/>
+                <ellipse cx="80" cy="83" rx="38" ry="9" fill="#b05630"/>
+                <ellipse cx="80" cy="58" r="26" fill="#7a3515" opacity="0.4"/>
+                <ellipse cx="80" cy="58" rx="24" ry="24" fill="url(#rg10)" stroke="#e8956d" stroke-width="1.5"/>
+                <path d="M80 38 Q100 58 80 78 Q60 58 80 38Z" fill="url(#ruby10)" stroke="rgba(255,150,150,0.5)" stroke-width="1"/>
+                <path d="M80 44 Q93 58 80 72 Q67 58 80 44Z" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <div class="product-badge antique">Antique</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Rose Gold</div>
+            <div class="product-name">Vintage Ruby Marquise</div>
+            <div class="product-stone">Pigeon Blood Ruby</div>
+            <div class="product-footer">
+              <div class="product-price">₹1,56,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★☆☆</span>
+                <span>3.5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 11: Daily Wear -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <linearGradient id="wg11" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f8f8f0"/>
+                    <stop offset="50%" stop-color="#d4d4c0"/>
+                    <stop offset="100%" stop-color="#a0a080"/>
+                  </linearGradient>
+                  <radialGradient id="d11" cx="50%" cy="30%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="60%" stop-color="#d8eeff"/>
+                    <stop offset="100%" stop-color="#90b8e0"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="155" rx="52" ry="11" fill="url(#wg11)"/>
+                <rect x="28" y="120" width="104" height="35" rx="3" fill="url(#wg11)"/>
+                <ellipse cx="80" cy="120" rx="52" ry="11" fill="url(#wg11)"/>
+                <ellipse cx="80" cy="110" rx="52" ry="11" fill="url(#wg11)"/>
+                <rect x="28" y="75" width="104" height="35" rx="3" fill="url(#wg11)"/>
+                <ellipse cx="80" cy="75" rx="52" ry="11" fill="url(#wg11)"/>
+                <circle cx="56" cy="92" r="5" fill="url(#d11)"/>
+                <circle cx="70" cy="92" r="5" fill="url(#d11)"/>
+                <circle cx="80" cy="90" r="6" fill="url(#d11)"/>
+                <circle cx="90" cy="92" r="5" fill="url(#d11)"/>
+                <circle cx="104" cy="92" r="5" fill="url(#d11)"/>
+              </svg>
+            </div>
+            <div class="daily-tag">Daily Wear</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">14k White Gold</div>
+            <div class="product-name">Geometric Diamond Stack</div>
+            <div class="product-stone">Lab Grown Diamond</div>
+            <div class="product-footer">
+              <div class="product-price">₹32,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★★</span>
+                <span>4.5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 12: Premium -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <div class="ring-placeholder" style="background:var(--cream-dark);">
+              <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+                <defs>
+                  <radialGradient id="yg12" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ffe8a0"/>
+                    <stop offset="50%" stop-color="#c9a96e"/>
+                    <stop offset="100%" stop-color="#7a5420"/>
+                  </radialGradient>
+                  <radialGradient id="sap12" cx="40%" cy="30%">
+                    <stop offset="0%" stop-color="#a0c0ff"/>
+                    <stop offset="50%" stop-color="#2244cc"/>
+                    <stop offset="100%" stop-color="#001066"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="80" cy="150" rx="55" ry="14" fill="url(#yg12)" opacity="0.9"/>
+                <rect x="25" y="84" width="110" height="66" rx="6" fill="url(#yg12)"/>
+                <ellipse cx="80" cy="84" rx="55" ry="14" fill="url(#yg12)"/>
+                <ellipse cx="80" cy="84" rx="37" ry="9" fill="#8B6010"/>
+                <ellipse cx="80" cy="58" r="26" fill="#2a1a60" opacity="0.4"/>
+                <ellipse cx="80" cy="58" rx="24" ry="24" fill="url(#yg12)" stroke="#c9a96e" stroke-width="1.5"/>
+                <ellipse cx="80" cy="58" rx="15" ry="18" fill="url(#sap12)" stroke="rgba(150,180,255,0.5)" stroke-width="1"/>
+                <ellipse cx="78" cy="54" rx="7" ry="9" fill="rgba(255,255,255,0.2)"/>
+              </svg>
+            </div>
+            <div class="product-badge">Premium</div>
+            <button class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-metal">18k Yellow Gold</div>
+            <div class="product-name">Classic Oval Sapphire</div>
+            <div class="product-stone">Blue Sapphire</div>
+            <div class="product-footer">
+              <div class="product-price">₹2,10,000</div>
+              <div class="product-rating-inline">
+                <span class="stars">★★★★☆</span>
+                <span>4.7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /products-grid -->
+
+      <!-- PAGINATION -->
+      <div class="pagination-wrap">
+        <div class="pagination">
+          <button class="page-btn nav-page">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span class="page-sep">…</span>
+          <button class="page-btn">12</button>
+          <button class="page-btn nav-page">›</button>
+        </div>
+        <div class="page-info">Page 1 of 13</div>
+      </div>
+
+    </div><!-- /products-area -->
+  </main>
+</div><!-- /listing-layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span style="color:var(--gold);font-size:16px;">◆</span>
+        Trilok – Om Sri Jewel
+      </div>
+      <p class="footer-tagline">Trilok represents the pinnacle of craftsmanship, bringing together timeless tradition and modern artisanal innovation.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a class="social-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a class="social-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="#">Bridal Heritage</a></li>
+        <li><a href="#">Everyday Elegance</a></li>
+        <li><a href="#">Temple Jewellery</a></li>
+        <li><a href="#">Modern Minimalism</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Customer Care</div>
+      <ul class="footer-links">
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="store-locator.html">Store Locator</a></li>
+        <li><a href="#">Gold Rate Guide</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Join The Inner Circle</div>
+      <p class="footer-newsletter-text">Receive updates on new collections and exclusive events.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Email Address">
+        <button class="newsletter-btn">Join</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        BIS Hallmark
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Lifetime Exchange
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure Payment
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Trilok – Om Sri Jewel. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+function toggleFilter(header) {
+  const group = header.parentElement;
+  group.classList.toggle('open');
+}
+
+function toggleCheck(label) {
+  label.classList.toggle('checked');
+}
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 30px rgba(115,64,42,0.08)' : 'none';
+});
+
+// View toggle
+document.querySelectorAll('.view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Sort select
+document.querySelector('.sort-select').addEventListener('change', function() {
+  // Visual feedback
+  this.style.color = 'var(--brown)';
+});
+
+// Filter pills remove
+document.querySelectorAll('.filter-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    pill.style.opacity = '0';
+    pill.style.transform = 'scale(0.8)';
+    setTimeout(() => pill.remove(), 200);
+  });
+  pill.style.transition = 'all 0.2s';
+});
+
+// Quick add feedback
+document.querySelectorAll('.quick-add').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    btn.style.background = '#2a6e2a';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+    setTimeout(() => {
+      btn.style.background = 'var(--brown)';
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+    }, 1200);
+  });
+});
+
+// Wishlist toggle
+document.querySelectorAll('.wishlist-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const svg = btn.querySelector('svg');
+    const isLiked = svg.getAttribute('fill') === 'var(--brown)';
+    svg.setAttribute('fill', isLiked ? 'none' : 'var(--brown)');
+    btn.style.background = isLiked ? 'rgba(255,255,255,0.9)' : 'var(--brown)';
+    btn.style.color = isLiked ? 'var(--brown)' : 'white';
+  });
+});
+
+// Range slider visual
+const slider = document.querySelector('.range-slider');
+if (slider) {
+  slider.addEventListener('input', function() {
+    const pct = (this.value - this.min) / (this.max - this.min) * 100;
+    this.style.background = `linear-gradient(to right, var(--brown) 0%, var(--brown) ${pct}%, rgba(115,64,42,0.15) ${pct}%)`;
+  });
+}
+</script>
+</body>
+</html>
